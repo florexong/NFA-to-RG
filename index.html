@@ -6,6 +6,13 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		<script src="js/RegularToNFA.js" ></script>
+		
+		<style>
+			table, td { border: 1px solid black; }
+		</style>
+	
+	
 	</head>
 
 	<body>
@@ -26,7 +33,17 @@
 			
 				<div id="rg2nfa" class="tab-pane fade">
 					<h3>Regular Grammar To NFA</h3>
-					<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+					<table id="rgTable">
+						<tr id="myRow">
+							<td>Row1 cell1</td>
+							<td>Row1 cell2</td>
+							<td>Row1 cell3</td>
+						</tr>
+					</table>
+					<br>
+					<button type="button" onclick="appendRow()">Appending Row</button>
+					<button type="button" onclick="appendColumn()">Appending Column</button>
+					<script src="js/RegularToNFA.js" ></script>
 				</div>
     
 				<div id="nfa2rg" class="tab-pane fade">
