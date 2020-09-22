@@ -7,6 +7,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 		<script src="js/RegularToNFA.js" ></script>
+		<script src="js/NFAToRegular.js" ></script>
 		
 		<style>
 			table, td { border: 1px solid black; }
@@ -49,7 +50,17 @@
     
 				<div id="nfa2rg" class="tab-pane fade">
 					<h3>NFA To Regular Grammar</h3>
-					<p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+					<form name="tablegen">
+						<span style="background-color: #FFFF00">E&emsp;&emsp;&nbsp;:</span> <input type="text" name="a1" id="a1" size="1"><span id="alphabetContainer"></span><button type="button" onclick="appendAlphabet()">+</button><br>
+						<span style="background-color: #FFFF00">Q&emsp;&emsp;&nbsp;:</span> <input type="text" name="s1" id="s1" size="1"><span id="stateContainer"></span><button type="button" onclick="appendState()">+</button><br>
+						<span style="background-color: #FFFF00">START:</span> <input type="text" name="start_1" size="1"><br>
+						<span style="background-color: #FFFF00">FINAL:</span> <input type="text" name="final_1" size="1"><input type="text" name="final_2" size="1"><input type="text" name="final_3" size="1"><input type="text" name="final_4" size="1"><input type="text" name="final_5" size="1"><br>
+  
+						<input name="generate" type="button" value="Create Table!" onclick='createTable();'/>
+					</form> 
+		
+					<div id="wrapper"></div>
+
 				</div>
     
 				<div id="docs" class="tab-pane fade">
