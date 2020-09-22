@@ -11,8 +11,39 @@
 		
 		<style>
 			table, td { border: 1px solid black; }
+
+		* {
+		  box-sizing: border-box;
+		}
+		
+		.column {
+		  float: left;
+		  /*width: 20%;*/
+		  padding: 5px;
+		}
+		
+		/* Clearfix (clear floats) */
+		.row::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
+		table {
+  			font-family: arial, sans-serif;
+ 			border-collapse: collapse;
+  			width: 80%;
+		}
+
+		td, th {
+  			border: 1px solid #dddddd;
+  			text-align: left;
+  			padding: 8px;
+		}
+
+		tr:nth-child(even) {
+  			background-color: #dddddd;
+		}
 		</style>
-	
 	
 	</head>
 
@@ -28,23 +59,77 @@
 		  
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
-					<h3>HOME</h3>
-					<p>Theory of Computation Assignment.</p>
-					<p>Need to convert Regular Grammar to NFA and NFA to Regular Grammar</p>
+					<h2>TIC2151 Theory of Computation</h2>
+					<h3>Group Members:</h3>
+					<div class="row">
+						<div class="column">
+						  <img src="images/arun.jpg" style="width:256px; height:256px">
+						  <h4 style="text-align:center;">Arun Prasath a/l Athappan</h4>
+						  <h4 style="text-align:center;">&nbsp;</h4>
+						  <h4 style="text-align:center;">1171101800</h4>
+						</div>
+						<div class="column">
+							<img src="images/ong.png" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Ong Pei Yong</h4>
+							<h4 style="text-align:center;">&nbsp;</h4>
+							<h4 style="text-align:center;">1171100665</h4>
+						</div>
+						<div class="column">
+							<img src="images/syafeeq.jpeg" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Muhammad Syafeeq</h4>
+							<h4 style="text-align:center;">Bin Mohd Fauzi</h4>
+							<h4 style="text-align:center;">1171100663</h4>
+						</div>
+						<div class="column">
+							<img src="images/edwin.jpg" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Edwin Kang Zheng Yang</h4>
+							<h4 style="text-align:center;">&nbsp;</h4>
+							<h4 style="text-align:center;">1181302428</h4>
+						</div>
+						
+					</div>
+					<table>
+						<tr>
+						  <th>Name</th>
+						  <th>Contribution Percentage</th>
+						  <th>Contribution Summary</th>
+						</tr>
+						<tr>
+						  <td>Arun Prasath a/l Athappan</td>
+						  <td>%</td>
+						  <td></td>
+						</tr>
+						<tr>
+						  <td>Ong Pei Yong</td>
+						  <td>%</td>
+						  <td></td>
+						</tr>
+						<tr>
+						  <td>Muhammad Syafeeq Bin Mohd Fauzi</td>
+						  <td>%</td>
+						  <td></td>
+						</tr>
+						<tr>
+						  <td>Edwin Kang Zheng Yang</td>
+						  <td>%</td>
+						  <td></td>
+						</tr>
+						</tr>
+					  </table>
 				</div>
 			
 				<div id="rg2nfa" class="tab-pane fade">
 					<h3>Regular Grammar To NFA</h3>
 					<table id="rgTable">
 						<tr id="myRow">
-							<td>Row1 cell1</td>
-							<td>Row1 cell2</td>
-							<td>Row1 cell3</td>
+							<td>A a</td>
+							<td>A b</td>
+							<td>A epsilon</td>
 						</tr>
 					</table>
 					<br>
-					<button type="button" onclick="appendRow()">Appending Row</button>
-					<button type="button" onclick="appendColumn()">Appending Column</button>
+					<button type="button" onclick="appendRow()">Append Row</button>
+					<button type="button" onclick="appendColumn()">Append Column</button>
 					<script src="js/RegularToNFA.js" ></script>
 				</div>
     
