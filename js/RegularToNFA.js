@@ -24,11 +24,19 @@ function addColumn()
 // append row to the HTML table
 function appendRow() {
     var tbl = document.getElementById('rgTable'), // table reference
-        row = tbl.insertRow(-1),//tbl.rows.length),      // append table row
+        row = tbl.insertRow(tbl.rows.length),      // append table row
         i;
     // insert table cells to the new row
     for (i = 0; i < tbl.rows[0].cells.length; i++) {
-        createCell(row.insertCell(i), "Cell"+i, 'row');
+        var td = document.createElement('td');
+		td = row.insertCell(i);
+		
+		var ele = document.createElement('input');
+		ele.setAttribute('type', 'text');
+		ele.setAttribute('value', '');
+		td.appendChild(ele);
+		
+		//createCell(row.insertCell(i), "Cell"+i, 'row');
     }
 }
  
@@ -36,7 +44,6 @@ function appendRow() {
 function createCell(cell, text, style) {
     
 	cell.innerHTML = text;
-	
 	//var div = document.createElement('div'), // create DIV element
     //    txt = document.createTextNode(text); // create text node
     //div.appendChild(txt);                    // append text node to the DIV
@@ -51,6 +58,13 @@ function appendColumn() {
         i;
     // open loop for each row and append cell
     for (i = 0; i < tbl.rows.length; i++) {
-        createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), "Cell"+i, 'col');
+		var td = document.createElement('td');
+		td = tbl.rows[i].insertCell(tbl.rows[i].cells.length);
+		
+		var ele = document.createElement('input');
+		ele.setAttribute('type', 'text');
+		ele.setAttribute('value', '');
+		td.appendChild(ele);
+        //createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), "Cell"+i, 'col');
     }
 }
