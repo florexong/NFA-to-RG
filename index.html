@@ -12,7 +12,24 @@
 		<style>
 			table, td { border: 1px solid black; }
 		</style>
-	
+	<style>
+		* {
+		  box-sizing: border-box;
+		}
+		
+		.column {
+		  float: left;
+		  /*width: 20%;*/
+		  padding: 5px;
+		}
+		
+		/* Clearfix (clear floats) */
+		.row::after {
+		  content: "";
+		  clear: both;
+		  display: table;
+		}
+		</style>
 	
 	</head>
 
@@ -28,9 +45,35 @@
 		  
 			<div class="tab-content">
 				<div id="home" class="tab-pane fade in active">
-					<h3>HOME</h3>
-					<p>Theory of Computation Assignment.</p>
-					<p>Need to convert Regular Grammar to NFA and NFA to Regular Grammar</p>
+					<h2>TIC2151 Theory of Computation</h2>
+					<h3>Group Members:</h3>
+					<div class="row">
+						<div class="column">
+						  <img src="images/arun.jpg" style="width:256px; height:256px">
+						  <h4 style="text-align:center;">Arun Prasath a/l Athappan</h4>
+						  <h4 style="text-align:center;">&nbsp;</h4>
+						  <h4 style="text-align:center;">1171101800</h4>
+						</div>
+						<div class="column">
+							<img src="images/ong.png" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Ong Pei Yong</h4>
+							<h4 style="text-align:center;">&nbsp;</h4>
+							<h4 style="text-align:center;">1171100665</h4>
+						</div>
+						<div class="column">
+							<img src="images/syafeeq.jpeg" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Muhammad Syafeeq</h4>
+							<h4 style="text-align:center;">Bin Mohd Fauzi</h4>
+							<h4 style="text-align:center;">1171100663</h4>
+						</div>
+						<div class="column">
+							<img src="images/edwin.jpg" style="width:256px; height:256px">
+							<h4 style="text-align:center;">Edwin Kang Zheng Yang</h4>
+							<h4 style="text-align:center;">&nbsp;</h4>
+							<h4 style="text-align:center;">1181302428</h4>
+						</div>
+						
+					</div>
 				</div>
 			
 				<div id="rg2nfa" class="tab-pane fade">
