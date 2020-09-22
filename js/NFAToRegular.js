@@ -4,28 +4,33 @@ function createTable()
 
     var theader = '<table border="1">\n';
     var tbody = '';
+	var alphabetValue = [];
+	var stateValue = [];
+	
+	tbody += '<tr>';
+	tbody += '<td>' + '' + '</td>';
+	for(var i=0; i<alphabetNum; i++)
+	{
+		var tempValue = document.getElementById("a"+(i+1)).value;
+		tbody += '<td>' + tempValue + '</td>';
+		alphabetValue.push(tempValue);
+	}
 
-    //var a1 = document.getElementById('a1').value;
-	//var a2 = document.getElementById('a2').value;
-	//var a3 = document.getElementById('a3').value;
-	//var a4 = document.getElementById('a4').value;
+	tbody += '</tr>\n'
 	
-	//var s1 = document.getElementById('s1').value;
-	//var s2 = document.getElementById('s2').value;
-	//var s3 = document.getElementById('s3').value;
-	//var s4 = document.getElementById('s4').value;
-	//var s5 = document.getElementById('s5').value;
-	
-
-	
-    for( var i=0; i<stateNum+1;i++)
+    for( var i=0; i<stateNum;i++)
     {
         tbody += '<tr>';
         for( var j=0; j<alphabetNum+1;j++)
         {
-            tbody += '<td>';
-            tbody += 'Cell ' + i + ',' + j;
-            tbody += '</td>'
+			if(j==0){
+				var tempValue = document.getElementById("s"+(i+1)).value;
+				tbody += '<td>' + tempValue + '</td>';
+				stateValue.push(tempValue);
+			}
+			else{
+				tbody += '<td>' + 'Cell ' + i + ',' + j + '</td>';
+			}
         }
         tbody += '</tr>\n';
     }
