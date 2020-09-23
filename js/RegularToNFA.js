@@ -1,4 +1,6 @@
 // append row to the HTML table
+vaa = 2;
+value = 2;
 function appendRow() {
     var tbl = document.getElementById('rgTable'), // table reference
         row = tbl.insertRow(tbl.rows.length),      // append table row
@@ -10,7 +12,7 @@ function appendRow() {
 		td = row.insertCell(i);
 		if(i == 0)
 		{
-			td.innerHTML = "New State(s)";
+			td.innerHTML = "State "+ vaa ;
 		}
 		else
 		{
@@ -21,8 +23,9 @@ function appendRow() {
 		}
 		//
     }
+    vaa++;
 }
- 
+
 // create DIV element and append to the table cell
 function createCell(cell, text, style) {
     
@@ -41,15 +44,14 @@ function appendColumn() {
 		td = tbl.rows[i].insertCell(tbl.rows[i].cells.length);
 		if(i == 0)
 		{
-			//var newCell = tbl.rows[i].insertCell(tbl.rows[i].cells.length);
-			//newCell.innerHTML = "New Alphabet";
-			//createCell(tbl.rows[i].insertCell(tbl.rows[i].cells.length), "Cells", 'col');
+			td.innerHTML =  String.fromCharCode(65 + value);
+			value++;
 		}
 		else
 		{
 			var ele = document.createElement('input');
 			ele.setAttribute('type', 'text');
-			ele.setAttribute('value', 'T');
+			ele.setAttribute('value', '');
 			td.appendChild(ele);
 		}
 		
