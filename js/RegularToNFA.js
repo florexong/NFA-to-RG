@@ -10,9 +10,7 @@ function appendRow() {
 		td = row.insertCell(i);
 		if(i == 0)
 		{
-			var newCell = row.insertCell(i);
-			newCell.innerHTML = "New State(s)";
-			//createCell(row.insertCell(i), "New State", 'row');
+			td.innerHTML = "New State(s)";
 		}
 		else
 		{
@@ -29,12 +27,7 @@ function appendRow() {
 function createCell(cell, text, style) {
     
 	cell.innerHTML = text;
-	//var div = document.createElement('div'), // create DIV element
-    //    txt = document.createTextNode(text); // create text node
-    //div.appendChild(txt);                    // append text node to the DIV
-    //div.setAttribute('class', style);        // set DIV class attribute
-    //div.setAttribute('className', style);    // set DIV class attribute for IE (?!)
-    //cell.appendChild(div);                   // append DIV to the table cell
+
 }
 
 // append column to the HTML table
