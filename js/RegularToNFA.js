@@ -1,5 +1,5 @@
 // append row to the HTML table
-vaa = 2;
+vaa = 1;
 value = 2;
 function appendRow() {
     var tbl = document.getElementById('rgTable'), // table reference
@@ -12,7 +12,7 @@ function appendRow() {
 		td = row.insertCell(i);
 		if(i == 0)
 		{
-			td.innerHTML = "State "+ vaa ;
+			td.innerHTML = "State "+ String.fromCharCode(65 + vaa); ;
 		}
 		else
 		{
@@ -44,7 +44,7 @@ function appendColumn() {
 		td = tbl.rows[i].insertCell(tbl.rows[i].cells.length);
 		if(i == 0)
 		{
-			td.innerHTML =  String.fromCharCode(65 + value);
+			td.innerHTML =  String.fromCharCode(97 + value);
 			value++;
 		}
 		else
