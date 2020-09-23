@@ -1,11 +1,38 @@
+var alphabetValue = [];
+var stateValue = [];
+	
+function convertToRG()
+{
+    var tbody = '';
+    for( var i=0; i<stateNum;i++)
+    {
+		tbody += stateValue[i] + '<span style="font-size:30px;">&#8594;</span>' 
+        for( var j=0; j<alphabetNum+1;j++)
+        {
+			if(j==0){
+				//var tempValue = document.getElementById("s"+(i+1)).value;
+				//stateValue.push(tempValue);
+			}
+			else{
+				var tempValue = document.getElementById("tableInput"+ i + j).value;
+				if (tempValue!='∅')
+				{
+					tbody += alphabetValue[j-1] + tempValue + ' | ';
+				}
+			}
+        }
+        tbody += '<br>';
+    }
+    document.getElementById('RegularGrammer').innerHTML = tbody;
+}
+
+
 function createTable()
 {
 
 
     var theader = '<table border="1">\n';
     var tbody = '';
-	var alphabetValue = [];
-	var stateValue = [];
 	
 	tbody += '<tr>';
 	tbody += '<td>' + '' + '</td>';
@@ -16,7 +43,7 @@ function createTable()
 		alphabetValue.push(tempValue);
 	}
 
-	tbody += '</tr>\n'
+	tbody += '</tr>'
 	
     for( var i=0; i<stateNum;i++)
     {
@@ -29,13 +56,15 @@ function createTable()
 				stateValue.push(tempValue);
 			}
 			else{
-				tbody += '<td>' + 'Cell ' + i + ',' + j + '</td>';
+				tbody += '<td>' + 'Cell ' + i + ',' + j +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅">';
 			}
         }
-        tbody += '</tr>\n';
+        tbody += '</tr>';
     }
     var tfooter = '</table>';
-    document.getElementById('wrapper').innerHTML = theader + tbody + tfooter;
+
+	var button = '<input name="generate" type="button" value="Convert to RG!" onclick="convertToRG()"/>\n'
+    document.getElementById('NFATable').innerHTML = theader + tbody + tfooter + button;
 
 }
 var alphabetNum = 1;
