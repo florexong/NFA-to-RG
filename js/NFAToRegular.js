@@ -42,8 +42,9 @@ for( var y = 0; y<input.length;y++)
 						success= true;
 					break;
 					}
+					break;
 				}
-				else success= false;
+				else {success= false;break}
 			}
 		}
 		if(final == true){
@@ -53,7 +54,7 @@ for( var y = 0; y<input.length;y++)
 
 }
 
-document.getElementById('outputCheckString1').innerHTML = success;
+document.getElementById('outputCheckString1').innerHTML = success+ nextState;
 }
 	
 
