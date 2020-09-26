@@ -52,6 +52,8 @@ for( var y = 0; y<input.length;y++)
 		break;
 	}
 }
+
+document.getElementById('outputCheckString1').innerHTML = success;
 }
 	
 
@@ -125,7 +127,7 @@ function convertToRG()
 
 	checkStringbody += 'Check strings (input)<br>'
 	
-	checkStringbody +='<input type="text" id="checkString1"><br><div id="checkStringContainer"></div><button type="button" onclick="appendCheckStringInput()">+</button><br></td><td>'
+	checkStringbody +='<input type="text" id="checkString1"><span id="outputCheckString1"></span><br><div id="checkStringContainer"></div><button type="button" onclick="appendCheckStringInput()">+</button><br></td><td>'
 	
 	checkStringbody += '<button type="button" onclick="checkStringFunction()">Check strings</button><br>'
 	
