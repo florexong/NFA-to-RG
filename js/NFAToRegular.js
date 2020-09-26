@@ -3,7 +3,7 @@
 function checkStringFunction()
 {
 	var input = document.getElementById("checkString1").value;
-	
+	final=false;
 	success = false;
 	var nextState = startStateValue;
 for( var y = 0; y<input.length;y++)
@@ -27,30 +27,30 @@ for( var y = 0; y<input.length;y++)
 				}
 			}
         }
-		if((finalStateValue.includes(nextState)))
-		{
-			success = true;
-			
-		}
-		else if(stateValue[i] == nextState)
+		
+		if(stateValue[i] == nextState)
 		{
 			for(var x = 0; x<inputStateCorrespondingAlphabet.length; x++)
 			{
 			if(input[y] == inputStateCorrespondingAlphabet[x])
 				{
 					nextState = inputStateArray[x];
+					
+					if((finalStateValue.includes(nextState)))
+					{
+						final = true;
+						success= true;
 					break;
+					}
 				}
-				else return false;
+				else success= false;
 			}
 		}
-		if(success == true){
+		if(final == true){
 			break;
 		}	
 	}
-	if(success == true){
-		break;
-	}
+
 }
 
 document.getElementById('outputCheckString1').innerHTML = success;
