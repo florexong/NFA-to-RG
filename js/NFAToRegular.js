@@ -1,8 +1,60 @@
+
+
 function checkStringFunction()
 {
+	var input = document.getElementById("checkString1").value;
+	
+	success = false;
+	var nextState = startStateValue;
+for( var y = 0; y<input.length;y++)
+{
+	for( var i=0; i<stateNum;i++)
+    {
+		var inputStateArray = [];
+		var inputStateCorrespondingAlphabet = [];
+        for( var j=0; j<alphabetNum+1;j++)
+        {
+			if(j==0){
+			}
+			else{
+				var inputState = document.getElementById("tableInput"+ i + j).value;
 
-
+				if (inputState!='∅' && inputState!='')
+				{
+					//tbody += alphabetValue[j-1] + inputState + ' | ';
+					inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
+					inputStateArray.push(inputState);
+				}
+			}
+        }
+		if((finalStateValue.includes(nextState)))
+		{
+			success = true;
+			
+		}
+		else if(stateValue[i] == nextState)
+		{
+			for(var x = 0; x<inputStateCorrespondingAlphabet.length; x++)
+			{
+			if(input[y] == inputStateCorrespondingAlphabet[x])
+				{
+					nextState = inputStateArray[x];
+					break;
+				}
+				else return false;
+			}
+		}
+		if(success == true){
+			break;
+		}	
+	}
+	if(success == true){
+		break;
+	}
 }
+}
+	
+
 var alphabetValue = [];
 var stateValue = [];
 	
