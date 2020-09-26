@@ -3,59 +3,55 @@
 function checkStringFunction()
 {
 	var input = document.getElementById("checkString1").value;
-	final=false;
-	success = false;
-	var nextState = startStateValue;
-for( var y = 0; y<input.length;y++)
-{
-	for( var i=0; i<stateNum;i++)
-    {
-		var inputStateArray = [];
-		var inputStateCorrespondingAlphabet = [];
-        for( var j=0; j<alphabetNum+1;j++)
-        {
-			if(j==0){
-			}
-			else{
-				var inputState = document.getElementById("tableInput"+ i + j).value;
 
-				if (inputState!='∅' && inputState!='')
-				{
-					//tbody += alphabetValue[j-1] + inputState + ' | ';
-					inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
-					inputStateArray.push(inputState);
+	var success = 'false';
+	
+	var nextState = startStateValue;
+	for( var y = 0; y<input.length;y++)
+	{
+		var process = 'false';
+		
+		for( var i=0; i<stateNum;i++)
+		{
+			if(stateValue[i]==nextState && process=='false'){
+			var inputStateArray = [];
+			var inputStateCorrespondingAlphabet = [];
+			for( var j=0; j<alphabetNum+1;j++)
+			{
+				if(j==0){
+				}
+				else{
+					var inputState = document.getElementById("tableInput"+ i + j).value;
+
+					if (inputState!='∅' && inputState!='')
+					{
+						//tbody += alphabetValue[j-1] + inputState + ' | ';
+						inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
+						inputStateArray.push(inputState);
+					}
 				}
 			}
-        }
 		
-		if(stateValue[i] == nextState)
-		{
 			for(var x = 0; x<inputStateCorrespondingAlphabet.length; x++)
 			{
-			if(input[y] == inputStateCorrespondingAlphabet[x])
+				if(input[y] == inputStateCorrespondingAlphabet[x])
 				{
 					nextState = inputStateArray[x];
-					
-					if((finalStateValue.includes(nextState)))
-					{
-						final = true;
-						success= true;
-					break;
+					if (finalStateValue.includes(nextState)){
+						success = 'true';
+					}else{
+						success = 'false';
 					}
-					break;
 				}
-				else {success= false;break}
 			}
+			process='true';
 		}
-		if(final == true){
-			break;
-		}	
+		}
 	}
 
+	document.getElementById('outputCheckString1').innerHTML = success+ nextState;
 }
 
-document.getElementById('outputCheckString1').innerHTML = success+ nextState;
-}
 	
 
 var alphabetValue = [];
