@@ -148,8 +148,8 @@
 					<form name="tablegen">
 						<span style="background-color: #FFFF00">∑&emsp;&emsp;&nbsp;:</span> <input type="text" name="a1" id="a1" size="1"><span id="alphabetContainer"></span><button type="button" onclick="appendAlphabet()">+</button><br>
 						<span style="background-color: #FFFF00">Q&emsp;&emsp;&nbsp;:</span> <input type="text" name="s1" id="s1" size="1"><span id="stateContainer"></span><button type="button" onclick="appendState()">+</button><br>
-						<span style="background-color: #FFFF00">START:</span> <input type="text" name="start_1" size="1"><br>
-						<span style="background-color: #FFFF00">FINAL:</span> <input type="text" name="final_1" size="1"><input type="text" name="final_2" size="1"><input type="text" name="final_3" size="1"><input type="text" name="final_4" size="1"><input type="text" name="final_5" size="1"><br>
+						<span style="background-color: #FFFF00">START:</span> <input type="text" id="startState" size="1"><br>
+						<span style="background-color: #FFFF00">FINAL:</span> <input type="text" id="finalState1" size="1"><span id="finalContainer"></span><button type="button" onclick="appendFinalState()">+</button><br>
   
 						<input name="generate" type="button" value="Create Table!" onclick='createTable();'/>
 					</form> 
@@ -158,6 +158,8 @@
 					<table border="1">
 						<td><div id="RegularGrammer"></div></td>
 					</table>
+					
+					<br><div id="CheckString"></div><br><br>
 
 				</div>
     
