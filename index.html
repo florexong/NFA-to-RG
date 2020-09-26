@@ -123,24 +123,23 @@
 			
 				<div id="rg2nfa" class="tab-pane fade">
 					<h2>Regular Grammar To NFA</h2>
-					<table id="rgTable">
-						<tr id="myRow">
-							<td> </td>
-							<td>State 1</td>
-							<td>State 2</td>
-						</tr>
-						
-						<tr>
-							<td>State A</td>
-							<td><input type='text' value></td>
-							<td><input type='text' value></td>
-						</tr>
-						
-					</table>
 					<br>
-					<button type="button" onclick="appendRow()">Append Row</button>
-					<button type="button" onclick="appendColumn()">Append Column</button>
-					<script src="js/RegularToNFA.js" ></script>
+						<h3> Enter Regular Grammar </h3>
+					<br>
+					
+					<table id="RGView">
+						<td>
+							<input type="text" name="state1" id="bigAlphabet1" size="1"> => 
+							<input type="text" name="alphabet1" id="smallAlphabet1" size="1"> 
+							<input type="text" name="state1" id="bigAlphabet1" size="1"> | 
+							<span id="alphabetContainer">*</span>
+							<button type="button" onclick="addAlphabet()">Add Alphabet</button>
+						</td>
+					</table>
+					
+					<br>
+						<button type="button" onclick="addState()">Add State</button>
+					<br>
 				</div>
     
 				<div id="nfa2rg" class="tab-pane fade">
