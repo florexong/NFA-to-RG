@@ -4,7 +4,7 @@ function CheckResult()
 	{
 		var check = document.getElementById("checkString"+w).value;
 		result = checkStringFunction(check);
-		document.getElementById('outputCheckString'+w).innerHTML = result+w+checkStringNum;
+		document.getElementById('outputCheckString'+w).innerHTML = result;
 	}
 }
 
