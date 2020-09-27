@@ -1,9 +1,15 @@
-
-
-function checkStringFunction()
+function CheckResult()
 {
-	var input = document.getElementById("checkString1").value;
+	for(var w = 1; w <=checkStringNum; w++)
+	{
+		var check = document.getElementById("checkString"+w).value;
+		result = checkStringFunction(check);
+		document.getElementById('outputCheckString'+w).innerHTML = result+w+checkStringNum;
+	}
+}
 
+function checkStringFunction(input)
+{
 	var success = 'false';
 	var ableToProceed = 'true';
 	
@@ -52,8 +58,7 @@ function checkStringFunction()
 		}
 		}
 	}
-
-	document.getElementById('outputCheckString1').innerHTML = success+ nextState;
+	return success;
 }
 
 	
@@ -130,7 +135,7 @@ function convertToRG()
 	
 	checkStringbody +='<input type="text" id="checkString1"><span id="outputCheckString1"></span><br><div id="checkStringContainer"></div><button type="button" onclick="appendCheckStringInput()">+</button><br></td><td>'
 	
-	checkStringbody += '<button type="button" onclick="checkStringFunction()">Check strings</button><br>'
+	checkStringbody += '<button type="button" onclick="CheckResult()">Check strings</button><br>'
 	
 	checkStringbody += '</td></table>'
 	
@@ -239,7 +244,11 @@ function appendCheckStringInput()
 	var checkString = document.createElement("INPUT");
 	checkString.setAttribute("type", "text");
 	checkString.setAttribute("id", "checkString"+checkStringNum);
+	var CheckResult = document.createElement("SPAN");
+	checkString.setAttribute("type", "text");
+	CheckResult.setAttribute("id", "outputCheckString"+checkStringNum);
 	var breakLine = document.createElement("BR");
 	document.getElementById('checkStringContainer').appendChild(checkString);
+	document.getElementById('checkStringContainer').appendChild(CheckResult);
 	document.getElementById('checkStringContainer').appendChild(breakLine);
 }
