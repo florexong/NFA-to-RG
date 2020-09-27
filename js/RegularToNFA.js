@@ -87,11 +87,15 @@ function addState(containID)
 	
 	arrayButton += 1;
 	
+	var dataF = "alphabetContainer"+arrayContainer;
+	console.log("Im HERE");
+	console.log(dataF);
+	
 	var btn = document.createElement("BUTTON");
 	btn.innerHTML = "Add Alphabet";
 	btn.setAttribute("type", "button");
 	btn.setAttribute("id", "button"+arrayButton);
-	btn.setAttribute("onclick", addAlphabet('"alphabetContainer"+arrayContainer'));
+	btn.setAttribute("onclick", "addAlphabet(" + dataF + ")");
 	
 	var newLines = document.createElement('br');
 	
