@@ -5,15 +5,18 @@ function checkStringFunction()
 	var input = document.getElementById("checkString1").value;
 
 	var success = 'false';
+	var ableToProceed = 'true';
 	
 	var nextState = startStateValue;
 	for( var y = 0; y<input.length;y++)
 	{
 		var process = 'false';
+		success = 'false';
 		
 		for( var i=0; i<stateNum;i++)
 		{
-			if(stateValue[i]==nextState && process=='false'){
+			if(stateValue[i]==nextState && process=='false' && ableToProceed=='true'){
+			ableToProceed = 'false'
 			var inputStateArray = [];
 			var inputStateCorrespondingAlphabet = [];
 			for( var j=0; j<alphabetNum+1;j++)
@@ -42,6 +45,7 @@ function checkStringFunction()
 					}else{
 						success = 'false';
 					}
+					ableToProceed = 'true';
 				}
 			}
 			process='true';
