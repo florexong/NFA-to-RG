@@ -1,5 +1,22 @@
 function displayStates(tableID)
 {
+	for(var i = 1 ; i <= arraySmallAlpha;i++){
+		var inputVal = document.getElementById("smallAlphabet"+i).value;
+		console.log(inputVal);
+	}
+	for(var i = 1 ; i <= arrayBigAlpha;i++){
+		var inputVal = document.getElementById("bigAlphabet"+i).value;
+		console.log(inputVal);
+	}
+	for(var i = 1 ; i <= finalArrayBigAlpha;i++){
+		var inputVal = document.getElementById("finalbigAlphabet"+i).value;
+		console.log(inputVal);
+	}
+	for(var i = 1 ; i <= finalArraySmallAlpha;i++){
+		var inputVal = document.getElementById("finalsmallAlphabet"+i).value;
+		console.log(inputVal);
+	}
+
 }
 
 /***
