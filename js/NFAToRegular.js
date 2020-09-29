@@ -4,20 +4,20 @@ function CheckResult()
 	{
 		var check = document.getElementById("checkString"+w).value;
 		result = checkStringFunction(check);
-		document.getElementById('outputCheckString'+w).innerHTML = result;
+		document.getElementById('outputCheckString'+w).innerHTML = " " + result;
 	}
 }
 
 function checkStringFunction(input)
 {
-	var success = 'false';
+	var success = 'Reject';
 	var ableToProceed = 'true';
 	
 	var nextState = startStateValue;
 	for( var y = 0; y<input.length;y++)
 	{
 		var process = 'false';
-		success = 'false';
+		success = 'Reject';
 		
 		for( var i=0; i<stateNum;i++)
 		{
@@ -47,9 +47,9 @@ function checkStringFunction(input)
 				{
 					nextState = inputStateArray[x];
 					if (finalStateValue.includes(nextState)){
-						success = 'true';
+						success = 'Accept';
 					}else{
-						success = 'false';
+						success = 'Accept';
 					}
 					ableToProceed = 'true';
 				}
@@ -192,7 +192,7 @@ function createTable()
 				stateValue.push(tempValue);
 			}
 			else{
-				tbody += '<td>' + 'Cell ' + i + ',' + j +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅">';
+				tbody += '<td>' +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅">';
 			}
         }
         tbody += '</tr>';
