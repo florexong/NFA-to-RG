@@ -1,3 +1,5 @@
+var DataAlphabets = [];
+
 function displayStates()
 {
 	/*** Region First State ***/
@@ -28,7 +30,6 @@ function displayStates()
 	
 	/*** Region Alphabet ***/
 	var dataScanned = false;
-	var dataDuplicator = " ";
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
 	{
 		for(var alphaCount = 1; alphaCount <= dataKeeper; alphaCount++)
@@ -59,17 +60,22 @@ function displayStates()
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(getAlphas.innerHTML != " " && dataScanned == true)
+			if(!DataAlphabets.includes(getAlphas.innerHTML))
 			{
-				document.getElementById("AlphabetsState").appendChild(getAlphas);
-			}
-			if(alphaCount != dataKeeper && dataScanned == true)
-			{
-				document.getElementById("AlphabetsState").appendChild(commas);
+				if(dataScanned == true)
+				{
+					document.getElementById("AlphabetsState").appendChild(getAlphas);
+					DataAlphabets.push(getAlphas.innerHTML);
+				}
+				if(alphaCount != dataKeeper)
+				{
+					document.getElementById("AlphabetsState").appendChild(commas);
+				}
 			}
 		}
-		dataDuplicator = getAlphas.innerHTML;
 	}
+	
+	for(var checkArray = 0; checkArray < DataAlphabets.length; checkArray++){ console.log(DataAlphabets[checkArray]); }
 	
 	/*** Region Final State ***/
 	var clearFinalData = document.getElementById("EndingState");
