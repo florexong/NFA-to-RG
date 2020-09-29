@@ -59,7 +59,7 @@ function displayStates()
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(getAlphas.innerHTML != " " && dataScanned == true && getAlphas != dataDuplicator)
+			if(getAlphas.innerHTML != " " && dataScanned == true)
 			{
 				document.getElementById("AlphabetsState").appendChild(getAlphas);
 			}
