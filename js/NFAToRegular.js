@@ -49,7 +49,7 @@ function checkStringFunction(input)
 					if (finalStateValue.includes(nextState)){
 						success = 'Accept';
 					}else{
-						success = 'Accept';
+						success = 'Reject';
 					}
 					ableToProceed = 'true';
 				}
