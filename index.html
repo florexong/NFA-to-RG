@@ -156,13 +156,37 @@
 							<span id="finalstateContainer1"></span>
 								<br>
 							<button type="button" onclick="addFinalState('finalstateContainer1')">Add Final State</button>
-							<button type="button" onclick="displayStates('converter')">Converter</button>
+							<button type="button" onclick="displayStates()">Converter</button>
 						</td>
 					</table>
 					
 					<br>
-						
+						Output Data
 					<br>
+					
+					<table id="FormalDescriptionView">
+							<tr>
+								<td>
+									<h2> Formal Description </h2>
+									<p><b> M = {Q, Σ, δ, P₀, F} </p></b>
+										Q = { <span id="StatesState"></span> } 
+											<br>
+										Σ = { <span id="AlphabetsState"></span> } 
+											<br>
+										δ = Q x Σ -> (Q)
+											<br>
+										P₀ = <span id="StartingState"></span>
+											<br>
+										F = { <span id="EndingState"></span> } 
+										<br>
+								</td>
+								
+								<td>
+									<h2> NFA Tables </h2>
+									<p>Table Should Be Here</p>
+								</td>
+							</tr>
+					</table>
 				</div>
     
 				<div id="nfa2rg" class="tab-pane fade">

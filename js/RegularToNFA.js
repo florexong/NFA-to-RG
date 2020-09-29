@@ -1,17 +1,106 @@
-function displayStates(tableID)
+function displayStates()
 {
+	/*** Region First State ***/
+	var firstState = document.getElementById("StartingState");
+	firstState.innerHTML = document.getElementById("State1").value;
+	
+	var clearData = document.getElementById("StatesState");
+	clearData.innerHTML = " ";
+	
+	/*** Region State ***/
+	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
+	{
+		var getState = document.createElement("text");
+		getState.innerHTML = document.getElementById("State"+stateCount).value;
+		
+		var commas = document.createElement("text");
+		commas.innerHTML = ", ";
+		
+		if(getState.innerHTML != " ")
+		{
+			document.getElementById("StatesState").appendChild(getState);
+		}
+		if(stateCount != arrayStates)
+		{
+			document.getElementById("StatesState").appendChild(commas);
+		}
+	}
+	
+	/*** Region Alphabet ***/
+	var dataScanned = false;
+	var dataDuplicator = " ";
+	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
+	{
+		for(var alphaCount = 1; alphaCount <= dataKeeper; alphaCount++)
+		{
+			dataScanned = false;
+			//console.log("State"+stateCount+"nextInput"+alphaCount);
+			if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == null)
+			{ 
+				console.log("State"+stateCount+"nextInput"+alphaCount+" -!-> Skipped!");
+			}
+			else
+			{
+				try
+				{
+					var getAlphas = document.createElement("text");
+					getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
+					console.log("State"+stateCount+"nextInput"+alphaCount+" ---> "+getAlphas.innerHTML);
+					dataScanned = true;
+				}
+				catch(err)
+				{
+					console.log(err);
+					dataScanned = false;
+				}
+			}
+			
+			
+			var commas = document.createElement("text");
+			commas.innerHTML = ", ";
+			
+			if(getAlphas.innerHTML != " " && dataScanned == true && getAlphas != dataDuplicator)
+			{
+				document.getElementById("AlphabetsState").appendChild(getAlphas);
+			}
+			if(alphaCount != dataKeeper && dataScanned == true)
+			{
+				document.getElementById("AlphabetsState").appendChild(commas);
+			}
+		}
+		dataDuplicator = getAlphas.innerHTML;
+	}
+	
+	/*** Region Final State ***/
+	var clearFinalData = document.getElementById("EndingState");
+	clearFinalData.innerHTML = null;
+	
+	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
+	{
+		var getState = document.createElement("text");
+		getState.innerHTML = document.getElementById("FinalState"+FinalstateCount).value;
+		
+		var commas = document.createElement("text");
+		commas.innerHTML = ", ";
+		if(getState.innerHTML != " ")
+		{
+			document.getElementById("EndingState").appendChild(getState);
+		}
+		if(FinalstateCount != arrayFinalState)
+		{
+			document.getElementById("EndingState").appendChild(commas);
+		}
+	}
+	
+	/***
 	for(var a = 1; a <= arrayStates; a++)
 	{
-		/***
-			States 
-		***/
 		var inputState = document.getElementById("State"+a).value;
-		console.log(inputState + " -> ");
 		for(var b = 1 ; b <= dataKeeper; b++)
 		{
 			if(document.getElementById("State"+a+"nextInput"+b) == null)
 			{ 
-				console.log("Skipping -> " + ("State"+a+"nextInput"+b));
+				console.log(inputState + " -> " + "- Skipping -> " + ("State"+a+"nextInput"+b));
 			}
 			else
 			{
@@ -19,7 +108,7 @@ function displayStates(tableID)
 				{
 					var inputAlpha = document.getElementById("State"+a+"nextInput"+b).value;
 					var inputNext = document.getElementById("State"+a+"nextStates"+b).value;
-					console.log(inputAlpha + inputNext);
+					console.log(inputState + " -> " + inputAlpha + inputNext);
 				}
 				catch(err)
 				{
@@ -29,25 +118,22 @@ function displayStates(tableID)
 		}
 	}
 	
-	for(var c = 0; c <= arrayFinalState; c++)
+	for(var c = 1; c <= arrayFinalState; c++)
 	{
-		/***
-			Final States
-		***/
-		var inputFinalState = document.getElementById("FinalState"+a).value;
+		var inputFinalState = document.getElementById("FinalState"+c).value;
 		console.log(inputFinalState + " -> ");
 		for(var d = 1 ; d <= dataKeeper; d++)
 		{
-			if(document.getElementById("FinalState"+a+"nextInput"+d) == null)
+			if(document.getElementById("FinalState"+c+"nextInput"+d) == null)
 			{ 
-				console.log("Skipping -> " + ("FinalState"+a+"nextInput"+d));
+				console.log("Skipping -> " + ("FinalState"+c+"nextInput"+d));
 			}
 			else
 			{
 				try
 				{
-					var inputFinalAlpha = document.getElementById("FinalState"+a+"finalNextInput"+d).value;
-					var inputFinalNext = document.getElementById("FinalState"+a+"finalNextState"+d).value;
+					var inputFinalAlpha = document.getElementById("FinalState"+c+"finalNextInput"+d).value;
+					var inputFinalNext = document.getElementById("FinalState"+c+"finalNextState"+d).value;
 					console.log(inputFinalAlpha + inputFinalNext);
 				}
 				catch(err)
@@ -57,6 +143,7 @@ function displayStates(tableID)
 			}
 		}
 	}
+	***/
 	/*
 	for(var i = 1 ; i <= arrayNextInput;i++){
 		var inputVal = document.getElementById("nextInput"+i).value;
@@ -109,7 +196,7 @@ function addAlphabet(containerID)
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("id", "State"+arrayStates+"nextStates"+arrayNextState);
 	
-	var nodeName = document.createElement(nodeName);
+	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " | ";
 	
 	document.getElementById(containerID).appendChild(getAlphabet);
@@ -133,7 +220,7 @@ function addState(containID)
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("id", "State"+arrayStates);
 	
-	var string = document.createElement(nodeName);
+	var string = document.createElement("text");
 	string.innerHTML = " => ";
 	
 	arrayNextInput += 1;
@@ -143,7 +230,7 @@ function addState(containID)
 	getAlphabet.setAttribute("size", "1");
 	getAlphabet.setAttribute("id", "State"+arrayStates+"nextInput"+arrayNextInput);
 	
-	var nodeName = document.createElement(nodeName);
+	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " ";
 	
 	arrayNextState += 1;
@@ -153,7 +240,7 @@ function addState(containID)
 	getStates2.setAttribute("size", "1");
 	getStates2.setAttribute("id", "State"+arrayStates+"nextStates"+arrayNextState);
 	
-	var data = document.createElement(data);
+	var data = document.createElement("text");
 	data.innerHTML = " | ";
 	
 	arrayContainer += 1;
@@ -221,7 +308,7 @@ function addFinalAlphabet(containerID)
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("id", "finalNextState"+arrayFinalNextState);
 	
-	var nodeName = document.createElement(nodeName);
+	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " | ";
 	
 	document.getElementById(containerID).appendChild(getAlphabet);
@@ -242,7 +329,7 @@ function addFinalState(containID)
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("id", "FinalState"+arrayFinalState);
 	
-	var string = document.createElement(nodeName);
+	var string = document.createElement("text");
 	string.innerHTML = " => ";
 	
 	arrayFinalNextInput += 1;
@@ -252,7 +339,7 @@ function addFinalState(containID)
 	getAlphabet.setAttribute("size", "1");
 	getAlphabet.setAttribute("id", "finalNextInput"+arrayFinalNextInput);
 	
-	var nodeName = document.createElement(nodeName);
+	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " ";
 	
 	arrayFinalNextState += 1;
@@ -262,7 +349,7 @@ function addFinalState(containID)
 	getStates2.setAttribute("size", "1");
 	getStates2.setAttribute("id", "finalNextState"+arrayFinalNextState);
 	
-	var data = document.createElement(data);
+	var data = document.createElement("text");
 	data.innerHTML = " | ";
 	
 	finalArrayContainer += 1;
