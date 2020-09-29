@@ -97,23 +97,23 @@
 						</tr>
 						<tr>
 						  <td>Arun Prasath a/l Athappan</td>
-						  <td>%</td>
-						  <td></td>
+						  <td>25%</td>
+						  <td>- Convert NFA to RG<br>- Documentation</td>
 						</tr>
 						<tr>
 						  <td>Ong Pei Yong</td>
-						  <td>%</td>
-						  <td></td>
+						  <td>25%</td>
+						  <td>- Convert ɛ-NFA to NFA<br>- Documentation</td>
 						</tr>
 						<tr>
 						  <td>Muhammad Syafeeq Bin Mohd Fauzi</td>
-						  <td>%</td>
-						  <td></td>
+						  <td>25%</td>
+						  <td>- Convert RG to NFA<br>- Documentation</td>
 						</tr>
 						<tr>
 						  <td>Edwin Kang Zheng Yang</td>
-						  <td>%</td>
-						  <td></td>
+						  <td>25%</td>
+						  <td>- Check String Function<br>- Documentation</td>
 						</tr>
 						</tr>
 					  </table>
@@ -122,7 +122,6 @@
 				</div>
 			
 				<div id="rg2nfa" class="tab-pane fade">
-					<h2>Regular Grammar To NFA</h2>
 					<br>
 						<h3> Enter Regular Grammar </h3>
 					<br>
@@ -167,7 +166,9 @@
 				</div>
     
 				<div id="nfa2rg" class="tab-pane fade">
-					<h2>NFA To Regular Grammar</h2>
+					<br>
+						<h3> Enter NFA </h3>
+					<br>
 					<form name="tablegen">
 						<span style="background-color: #FFFF00">∑&emsp;&emsp;&nbsp;:</span> <input type="text" name="a1" id="a1" size="1"><span id="alphabetContainer"></span><button type="button" onclick="appendAlphabet()">+</button><br>
 						<span style="background-color: #FFFF00">Q&emsp;&emsp;&nbsp;:</span> <input type="text" name="s1" id="s1" size="1"><span id="stateContainer"></span><button type="button" onclick="appendState()">+</button><br>
@@ -187,8 +188,27 @@
 				</div>
     
 				<div id="docs" class="tab-pane fade">
-					<h2>Help & Documentation</h2>
-					<p>123</p>
+					<br>
+					<h3><u>General Information</u></h3>
+						<h4>1. User's input "e" as epsilon "ɛ".</h4>
+						<h4>2. Output of epsilon will show "ɛ".</h4>
+					<br>
+					<h3><u>RG to NFA Instruction</u></h3>
+						<h4>1. Enter the information about RG.</h4>
+						<h4>2. Click "Converter" button.</h4>
+					<br>
+					<h3><u>RG to NFA Instruction</u></h3>
+						<h4>1. Enter the information about NFA.</h4>
+						<h4>2. Click "Create Table!" button.</h4>
+						<h4>3. Enter the outgoing state for each alphabet and state in the table.</h4>
+						<h4>4. Click "Convert to RG" button.</h4>
+						<h4>5. Result of RG is displayed.</h4>
+					<br>
+					<h3><u>Check String Instruction</u></h3>
+						<h4>1. Click the "+" column if wish to check more string.</h4>
+						<h4>2. Enter the string in the column.</h4>
+						<h4>3. Click the "Check String" button.</h4>
+						<h4>4. Result of each column is displayed beside respective column.</h4>
 				</div>
 			</div>
 		</div>

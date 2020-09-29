@@ -135,7 +135,7 @@ function convertToRG()
 	
 	checkStringbody +='<input type="text" id="checkString1"><span id="outputCheckString1"></span><br><div id="checkStringContainer"></div><button type="button" onclick="appendCheckStringInput()">+</button><br></td><td>'
 	
-	checkStringbody += '<button type="button" onclick="CheckResult()">Check strings</button><br>'
+	checkStringbody += '<button type="button" onclick="CheckResult()">Check String</button><br>'
 	
 	checkStringbody += '</td></table>'
 	
