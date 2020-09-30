@@ -28,6 +28,25 @@ function displayStates()
 		}
 	}
 	
+	for(var fstateCount = 1; stateCount <= arrayStates; stateCount++)
+	{
+		var getState = document.createElement("text");
+		getState.innerHTML = document.getElementById("FinalState"+fstateCount).value;
+		
+		var commas = document.createElement("text");
+		commas.innerHTML = ", ";
+		
+		if(getState.innerHTML != " ")
+		{
+			document.getElementById("StatesState").appendChild(getState);
+		}
+		if(stateCount != arrayStates)
+		{
+			document.getElementById("StatesState").appendChild(commas);
+		}
+	}
+	
+	
 	/*** Region Alphabet ***/
 	var dataScanned = false;
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
@@ -65,17 +84,14 @@ function displayStates()
 				if(dataScanned == true)
 				{
 					document.getElementById("AlphabetsState").appendChild(getAlphas);
-					DataAlphabets.push(getAlphas.innerHTML);
-				}
-				if(alphaCount != dataKeeper)
-				{
 					document.getElementById("AlphabetsState").appendChild(commas);
+					DataAlphabets.push(getAlphas.innerHTML);
 				}
 			}
 		}
 	}
 	
-	for(var checkArray = 0; checkArray < DataAlphabets.length; checkArray++){ console.log(DataAlphabets[checkArray]); }
+	//for(var checkArray = 0; checkArray < DataAlphabets.length; checkArray++){ console.log(DataAlphabets[checkArray]); }
 	
 	/*** Region Final State ***/
 	var clearFinalData = document.getElementById("EndingState");
@@ -188,26 +204,35 @@ arrayContainerStates = 1;
 function addAlphabet(containerID)
 {
 	dataKeeper += 1;
-	arrayNextInput += 1;
-	
-	var getAlphabet = document.createElement("INPUT");
-	getAlphabet.setAttribute("type", "text");
-	getAlphabet.setAttribute("size", "1");
-	getAlphabet.setAttribute("id", "State"+arrayStates+"nextInput"+arrayNextInput);
-	
-	arrayNextState += 1;
-	
-	var getStates = document.createElement("INPUT");
-	getStates.setAttribute("type", "text");
-	getStates.setAttribute("size", "1");
-	getStates.setAttribute("id", "State"+arrayStates+"nextStates"+arrayNextState);
-	
-	var nodeName = document.createElement("text");
-	nodeName.innerHTML = " | ";
-	
-	document.getElementById(containerID).appendChild(getAlphabet);
-	document.getElementById(containerID).appendChild(getStates);
-	document.getElementById(containerID).appendChild(nodeName);
+	for(var dataCheck = 1; dataCheck <= arrayContainer; dataCheck++)
+	{
+		var dataRead = 'alphabetContainer'+dataCheck;
+		console.log(containerID + " -> is ?> " + dataRead + " == " + containerID);
+		if(dataRead == containerID)
+		{
+			arrayNextInput += 1;
+			
+			var getAlphabet = document.createElement("INPUT");
+			getAlphabet.setAttribute("type", "text");
+			getAlphabet.setAttribute("size", "1");
+			getAlphabet.setAttribute("id", "State"+dataCheck+"nextInput"+arrayNextInput);
+
+			arrayNextState += 1;
+
+			var getStates = document.createElement("INPUT");
+			getStates.setAttribute("type", "text");
+			getStates.setAttribute("size", "1");
+			getStates.setAttribute("id", "State"+dataCheck+"nextStates"+arrayNextState);
+			
+			var nodeName = document.createElement("text");
+			nodeName.innerHTML = " | ";
+			
+			document.getElementById(containerID).appendChild(getAlphabet);
+			document.getElementById(containerID).appendChild(getStates);
+			document.getElementById(containerID).appendChild(nodeName);
+		}
+	}
+	console.log(" --> <--- ");
 }
 
 /***
