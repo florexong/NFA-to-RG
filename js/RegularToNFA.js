@@ -21,14 +21,11 @@ function displayStates()
 		if(getState.innerHTML != " ")
 		{
 			document.getElementById("StatesState").appendChild(getState);
-		}
-		if(stateCount != arrayStates)
-		{
 			document.getElementById("StatesState").appendChild(commas);
 		}
 	}
 	
-	for(var fstateCount = 1; stateCount <= arrayStates; stateCount++)
+	for(var fstateCount = 1; fstateCount <= arrayFinalState; fstateCount++)
 	{
 		var getState = document.createElement("text");
 		getState.innerHTML = document.getElementById("FinalState"+fstateCount).value;
@@ -40,7 +37,7 @@ function displayStates()
 		{
 			document.getElementById("StatesState").appendChild(getState);
 		}
-		if(stateCount != arrayStates)
+		if(fstateCount != arrayFinalState)
 		{
 			document.getElementById("StatesState").appendChild(commas);
 		}
