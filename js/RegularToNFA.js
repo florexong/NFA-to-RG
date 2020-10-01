@@ -111,6 +111,49 @@ function displayStates()
 		}
 	}
 	
+	/*** Region Final Alphabet State ***/
+	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
+	{
+		for(var FinalalphaCount = 1; FinalalphaCount <= dataFinalKeeper; FinalalphaCount++)
+		{
+			dataScanned = false;
+			//console.log("State"+FinalstateCount+"NextInput"+FinalalphaCount);
+			if(document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount) == null)
+			{ 
+				console.log("finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" -!-> Skipped!");
+			}
+			else
+			{
+				try
+				{
+					var getAlphas = document.createElement("text");
+					getAlphas.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount).value;
+					console.log("finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" ---> "+getAlphas.innerHTML);
+					dataScanned = true;
+				}
+				catch(err)
+				{
+					console.log(err);
+					dataScanned = false;
+				}
+			}
+			
+			
+			var commas = document.createElement("text");
+			commas.innerHTML = ", ";
+			
+			if(!DataAlphabets.includes(getAlphas.innerHTML))
+			{
+				if(dataScanned == true)
+				{
+					document.getElementById("AlphabetsState").appendChild(getAlphas);
+					document.getElementById("AlphabetsState").appendChild(commas);
+					DataAlphabets.push(getAlphas.innerHTML);
+				}
+			}
+		}
+	}
+	
 	/***
 	for(var a = 1; a <= arrayStates; a++)
 	{
@@ -334,14 +377,14 @@ function addFinalAlphabet(containerID)
 			var getAlphabet = document.createElement("INPUT");
 			getAlphabet.setAttribute("type", "text");
 			getAlphabet.setAttribute("size", "1");
-			getAlphabet.setAttribute("id", "finalState"+dataCheck+"nextInput"+arrayFinalNextInput);
+			getAlphabet.setAttribute("id", "finalState"+dataCheck+"NextInput"+arrayFinalNextInput);
 
 			arrayFinalNextState += 1;
 
 			var getStates = document.createElement("INPUT");
 			getStates.setAttribute("type", "text");
 			getStates.setAttribute("size", "1");
-			getStates.setAttribute("id", "finalState"+dataCheck+"nextStates"+arrayFinalNextState);
+			getStates.setAttribute("id", "finalState"+dataCheck+"NextStates"+arrayFinalNextState);
 			
 			var nodeName = document.createElement("text");
 			nodeName.innerHTML = " | ";
