@@ -8,6 +8,14 @@ function displayStates()
 	
 	var clearData = document.getElementById("StatesState");
 	clearData.innerHTML = " ";
+	/*** Table for NFA      ***/
+	var theader = '<table border="1">\n';
+    var tbody = '';
+    var tbody1 = '';
+    tbody1 += '<tr>';
+	
+	tbody += '<tr>';
+	tbody += '<td>' + '' + '</td>';
 	
 	/*** Region State ***/
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
@@ -22,8 +30,10 @@ function displayStates()
 		{
 			document.getElementById("StatesState").appendChild(getState);
 			document.getElementById("StatesState").appendChild(commas);
+			tbody1 += '<td>' + getState.innerHTML + '</td>' + '</tr>';
 		}
 	}
+
 	
 	for(var fstateCount = 1; fstateCount <= arrayFinalState; fstateCount++)
 	{
@@ -36,6 +46,8 @@ function displayStates()
 		if(getState.innerHTML != " ")
 		{
 			document.getElementById("StatesState").appendChild(getState);
+			tbody1 += '<td>' + getState.innerHTML + '</td>' + '</tr>';
+
 		}
 		if(fstateCount != arrayFinalState)
 		{
@@ -83,6 +95,7 @@ function displayStates()
 					document.getElementById("AlphabetsState").appendChild(getAlphas);
 					document.getElementById("AlphabetsState").appendChild(commas);
 					DataAlphabets.push(getAlphas.innerHTML);
+					tbody += '<td>' + getAlphas.innerHTML + '</td>';
 				}
 			}
 		}
@@ -104,6 +117,7 @@ function displayStates()
 		if(getState.innerHTML != " ")
 		{
 			document.getElementById("EndingState").appendChild(getState);
+			
 		}
 		if(FinalstateCount != arrayFinalState)
 		{
@@ -149,11 +163,16 @@ function displayStates()
 					document.getElementById("AlphabetsState").appendChild(getAlphas);
 					document.getElementById("AlphabetsState").appendChild(commas);
 					DataAlphabets.push(getAlphas.innerHTML);
+					tbody += '<td>' + getAlphas.innerHTML + '</td>';
 				}
 			}
 		}
 	}
-	
+	tbody += '<td>' + 'ε' + '</td>' ;
+	tbody += '</tr>';
+
+	var tfooter = '</table>';
+	document.getElementById('NFAtable').innerHTML = theader + tbody + tbody1 + tfooter;
 	/***
 	for(var a = 1; a <= arrayStates; a++)
 	{
