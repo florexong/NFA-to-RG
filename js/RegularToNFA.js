@@ -1,4 +1,167 @@
 var DataAlphabets = [];
+var TableDataAlphabets = [];
+
+function displayTable()
+{
+	TableDataAlphabets = [];
+	
+		/*** Table for NFA      ***/
+	var theader = '<table border="1">\n';
+    var tbody = '';
+    var tbody1 = '';
+	
+	tbody += '<tr>';
+	tbody += '<td>' + '' + '</td>';
+
+	var dataScanned = false;
+	
+	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
+	{
+		var getState = document.createElement("text");
+		getState.innerHTML = document.getElementById("State"+stateCount).value;
+		
+		if(getState.innerHTML != "")
+		{
+			if(stateCount == 1){
+				//document.getElementById("StatesState").appendChild(getState);
+				tbody1 += '<tr>'
+					tbody1 += '<td>' + "-->" + getState.innerHTML + '</td>'
+				
+					/** Next Column from States ***/
+					for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
+					{
+						if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
+						{ 
+							console.log("State"+stateCount+"nextStates"+getNextInput+" -!-> Skipped!");
+							tbody1 += '<td>' + 'Ø' + '</td>';
+						}
+						else
+						{
+							var getAlphas = document.createElement("text");
+							getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
+							tbody1 += '<td>' + getAlphas.innerHTML + '</td>';
+						}
+					}
+					
+					/** Epsilon Part **/
+					tbody1 += '<td>' + 'Ø' + '</td>';
+				tbody1 += '</tr>';
+			}
+			else
+			{
+				//document.getElementById("StatesState").appendChild(getState);
+				tbody1 += '<tr>'
+					tbody1 += '<td>' + getState.innerHTML + '</td>'
+				
+					for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
+					{
+						if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
+						{ 
+							console.log("State"+stateCount+"nextStates"+getNextInput+" -!-> Skipped!");
+							tbody1 += '<td>' + 'Ø' + '</td>';
+						}
+						else
+						{
+							var getAlphas = document.createElement("text");
+							getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
+							tbody1 += '<td>' + getAlphas.innerHTML + '</td>';
+						}
+					}
+				
+					tbody1 += '<td>' + 'Ø' + '</td>';
+				tbody1 += '</tr>';
+			}
+
+		}
+		
+		for(var alphaCount = 1; alphaCount <= dataKeeper; alphaCount++)
+		{
+			dataScanned = false;
+			//console.log("State"+stateCount+"nextInput"+alphaCount);
+			if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == null)
+			{ 
+				console.log("State"+stateCount+"nextInput"+alphaCount+" -!-> Skipped!");
+			}
+			else
+			{
+				var getAlphas = document.createElement("text");
+				getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
+				
+				console.log("State" + stateCount + "nextInput" + alphaCount + " ---> " + getAlphas.innerHTML);
+				dataScanned = true;
+			}
+			
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
+			{
+				if(dataScanned == true)
+				{
+					//document.getElementById("AlphabetsState").appendChild(getAlphas);
+					TableDataAlphabets.push(getAlphas.innerHTML);
+					tbody += '<td>' + getAlphas.innerHTML + '</td>';
+				}
+			}
+		}
+	}
+	
+	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
+	{
+		
+		var getState = document.createElement("text");
+		getState.innerHTML = document.getElementById("FinalState"+FinalstateCount).value;
+		
+		if(getState.innerHTML != " ")
+		{
+			//document.getElementById("EndingState").appendChild(getState);
+			tbody1 += '<tr>'+'<td>' + "*" + getState.innerHTML + '</td>' + '</tr>';
+		}
+		
+		for(var FinalalphaCount = 1; FinalalphaCount <= dataFinalKeeper; FinalalphaCount++)
+		{
+			dataScanned = false;
+			//console.log("State"+FinalstateCount+"NextInput"+FinalalphaCount);
+			if(document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount) == null)
+			{ 
+				console.log("finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" -!-> Skipped!");
+			}
+			else
+			{
+				try
+				{
+					var getAlphas = document.createElement("text");
+					getAlphas.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount).value;
+					console.log("finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" ---> "+getAlphas.innerHTML);
+					dataScanned = true;
+				}
+				catch(err)
+				{
+					console.log(err);
+					dataScanned = false;
+				}
+			}
+			
+			
+			var commas = document.createElement("text");
+			commas.innerHTML = ", ";
+			
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
+			{
+				if(dataScanned == true)
+				{
+					//document.getElementById("AlphabetsState").appendChild(getAlphas);
+					TableDataAlphabets.push(getAlphas.innerHTML);
+					tbody += '<td>' + getAlphas.innerHTML + '</td>';
+				}
+			}
+		}
+	}
+	
+	tbody += '<td>' + 'ε' + '</td>' ;
+	tbody += '</tr>';
+
+	var tfooter = '</table>';
+	document.getElementById('NFAtable').innerHTML = theader + tbody + tbody1 + tfooter;
+	console.log("Table code "+theader + tbody + tbody1 + tfooter);
+}
 
 function displayStates()
 {
@@ -7,15 +170,7 @@ function displayStates()
 	firstState.innerHTML = document.getElementById("State1").value;
 	
 	var clearData = document.getElementById("StatesState");
-	clearData.innerHTML = " ";
-	/*** Table for NFA      ***/
-	var theader = '<table border="1">\n';
-    var tbody = '';
-    var tbody1 = '';
-   
-	
-	tbody += '<tr>';
-	tbody += '<td>' + '' + '</td>';
+	clearData.innerHTML = "";
 	
 	/*** Region State ***/
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
@@ -26,24 +181,13 @@ function displayStates()
 		var commas = document.createElement("text");
 		commas.innerHTML = ", ";
 		
-		if(getState.innerHTML != " ")
+		if(getState.innerHTML != "")
 		{
-			if(stateCount == 1){
-				document.getElementById("StatesState").appendChild(getState);
-				document.getElementById("StatesState").appendChild(commas);
-				tbody1 += '<tr>'+'<td>' + "-->" +getState.innerHTML + '</td>' + '</tr>';
-
-			}
-			else{
-				document.getElementById("StatesState").appendChild(getState);
-				document.getElementById("StatesState").appendChild(commas);
-				tbody1 += '<tr>'+'<td>' + getState.innerHTML + '</td>' + '</tr>';
-			}
-
+			document.getElementById("StatesState").appendChild(getState);
+			document.getElementById("StatesState").appendChild(commas);
 		}
 	}
 
-	
 	for(var fstateCount = 1; fstateCount <= arrayFinalState; fstateCount++)
 	{
 		var getState = document.createElement("text");
@@ -52,14 +196,9 @@ function displayStates()
 		var commas = document.createElement("text");
 		commas.innerHTML = ", ";
 		
-		if(getState.innerHTML != " ")
+		if(getState.innerHTML != "")
 		{
 			document.getElementById("StatesState").appendChild(getState);
-			tbody1 += '<tr>'+'<td>' + "*" + getState.innerHTML + '</td>' + '</tr>';
-
-		}
-		if(fstateCount != arrayFinalState)
-		{
 			document.getElementById("StatesState").appendChild(commas);
 		}
 	}
@@ -83,7 +222,7 @@ function displayStates()
 				{
 					var getAlphas = document.createElement("text");
 					getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
-					console.log("State"+stateCount+"nextInput"+alphaCount+" ---> "+getAlphas.innerHTML);
+					console.log("State"+stateCount+" -> " + "State"+stateCount+"nextInput"+alphaCount+" ---> "+getAlphas.innerHTML);
 					dataScanned = true;
 				}
 				catch(err)
@@ -97,20 +236,17 @@ function displayStates()
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != " "))
 			{
 				if(dataScanned == true)
 				{
 					document.getElementById("AlphabetsState").appendChild(getAlphas);
 					document.getElementById("AlphabetsState").appendChild(commas);
 					DataAlphabets.push(getAlphas.innerHTML);
-					tbody += '<td>' + getAlphas.innerHTML + '</td>';
 				}
 			}
 		}
 	}
-	
-	//for(var checkArray = 0; checkArray < DataAlphabets.length; checkArray++){ console.log(DataAlphabets[checkArray]); }
 	
 	/*** Region Final State ***/
 	var clearFinalData = document.getElementById("EndingState");
@@ -123,13 +259,10 @@ function displayStates()
 		
 		var commas = document.createElement("text");
 		commas.innerHTML = ", ";
+		
 		if(getState.innerHTML != " ")
 		{
 			document.getElementById("EndingState").appendChild(getState);
-			
-		}
-		if(FinalstateCount != arrayFinalState)
-		{
 			document.getElementById("EndingState").appendChild(commas);
 		}
 	}
@@ -161,98 +294,20 @@ function displayStates()
 				}
 			}
 			
-			
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
 			{
 				if(dataScanned == true)
 				{
 					document.getElementById("AlphabetsState").appendChild(getAlphas);
 					document.getElementById("AlphabetsState").appendChild(commas);
 					DataAlphabets.push(getAlphas.innerHTML);
-					tbody += '<td>' + getAlphas.innerHTML + '</td>';
 				}
 			}
 		}
 	}
-	tbody += '<td>' + 'ε' + '</td>' ;
-	tbody += '</tr>';
-
-	var tfooter = '</table>';
-	document.getElementById('NFAtable').innerHTML = theader + tbody + tbody1 + tfooter;
-	console.log("Table code "+theader + tbody + tbody1 + tfooter);
-	/***
-	for(var a = 1; a <= arrayStates; a++)
-	{
-		var inputState = document.getElementById("State"+a).value;
-		for(var b = 1 ; b <= dataKeeper; b++)
-		{
-			if(document.getElementById("State"+a+"nextInput"+b) == null)
-			{ 
-				console.log(inputState + " -> " + "- Skipping -> " + ("State"+a+"nextInput"+b));
-			}
-			else
-			{
-				try
-				{
-					var inputAlpha = document.getElementById("State"+a+"nextInput"+b).value;
-					var inputNext = document.getElementById("State"+a+"nextStates"+b).value;
-					console.log(inputState + " -> " + inputAlpha + inputNext);
-				}
-				catch(err)
-				{
-					console.log(err);
-				}
-			}
-		}
-	}
-	
-	for(var c = 1; c <= arrayFinalState; c++)
-	{
-		var inputFinalState = document.getElementById("FinalState"+c).value;
-		console.log(inputFinalState + " -> ");
-		for(var d = 1 ; d <= dataKeeper; d++)
-		{
-			if(document.getElementById("FinalState"+c+"nextInput"+d) == null)
-			{ 
-				console.log("Skipping -> " + ("FinalState"+c+"nextInput"+d));
-			}
-			else
-			{
-				try
-				{
-					var inputFinalAlpha = document.getElementById("FinalState"+c+"finalNextInput"+d).value;
-					var inputFinalNext = document.getElementById("FinalState"+c+"finalNextState"+d).value;
-					console.log(inputFinalAlpha + inputFinalNext);
-				}
-				catch(err)
-				{
-					console.log(err);
-				}
-			}
-		}
-	}
-	***/
-	/*
-	for(var i = 1 ; i <= arrayNextInput;i++){
-		var inputVal = document.getElementById("nextInput"+i).value;
-		console.log(inputVal);
-	}
-	for(var i = 1 ; i <= arrayNextState;i++){
-		var inputVal = document.getElementById("nextStates"+i).value;
-		console.log(inputVal);
-	}
-	for(var i = 1 ; i <= arrayFinalNextState;i++){
-		var inputVal = document.getElementById("finalNextState"+i).value;
-		console.log(inputVal);
-	}
-	for(var i = 1 ; i <= arrayFinalNextInput;i++){
-		var inputVal = document.getElementById("finalNextInput"+i).value;
-		console.log(inputVal);
-	}
-	*/
 }
 
 /***
