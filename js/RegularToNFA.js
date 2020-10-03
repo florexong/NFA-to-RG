@@ -74,28 +74,31 @@ function displayTable()
 			{ 
 				console.log("STORING DATA >>> State"+stateCount+"nextInput"+alphaCount+" -!-> Skipped!");
 			}
-			else if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "" || document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "e" ){
-				inputStateCorrespondingAlphabet.push("ε");
-			}
 			else
 			{
 				var getAlphas = document.createElement("text");
 				getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
 				
 				console.log("STORING DATA >>> State" + stateCount + "nextInput" + alphaCount + " ---> " + getAlphas.innerHTML);
-				
-				inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
+				if(getAlphas.innerHTML == "" || getAlphas == "e")
+				{
+					inputStateCorrespondingAlphabet.push("ε");
+				}
+				else
+				{
+					inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
+				}
 			}
 			
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && getAlphas.innerHTML != null && getAlphas.innerHTML != "e")
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				TableDataAlphabets.push(getAlphas.innerHTML);
 			}
-			else{
+			else
+			{
 				episolunCheck = true;
 			}
 		}
-	
 	}
 	
 	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
@@ -123,16 +126,19 @@ function displayTable()
 					var getAlphas = document.createElement("text");
 					getAlphas.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount).value;
 					
-					console.log("STORING DATA >>> finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" ---> "+getAlphas.innerHTML);
+					console.log("STORING DATA >>> finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" ---> ("+getAlphas.innerHTML+")");
 					
 					var tempNextState = document.createElement("text");
 					tempNextState.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextState"+FinalalphaCount).value;
 					
-					if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "" || document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "e" ){
+					if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e" )
+					{
 						inputStateArray.push(tempNextState.innerHTML);
 						inputStateCorrespondingAlphabet.push("ε");
 						inputStateCorrespondingState.push(getState.innerHTML);
-					}else{
+					}
+					else
+					{
 						inputStateArray.push(tempNextState.innerHTML);
 						inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
 						inputStateCorrespondingState.push(getState.innerHTML);
@@ -152,7 +158,9 @@ function displayTable()
 				if(dataScanned == true)
 				{
 					TableDataAlphabets.push(getAlphas.innerHTML);
-				}else{
+				}
+				else
+				{
 					episolunCheck = true;
 				}
 			}
@@ -164,9 +172,11 @@ function displayTable()
 		TableDataAlphabets.push("ε");
 	}
 	
+	var clearMemory = document.getElementById('NFAtable')
+	clearMemory.innerHTML = "";
+	
 	//Arun Table...........................
 	startStateValue = State[0];
-	
 	
     var theader = '<table border="1">\n';
     var tbody = '';
@@ -186,7 +196,8 @@ function displayTable()
         tbody += '<tr>';
         for( var j=0; j<TableDataAlphabets.length+1;j++)
         {
-			if(j==0){
+			if(j==0)
+			{
 				var tempValue = State[i];
 				if(tempValue == startStateValue)
 				{
@@ -200,11 +211,11 @@ function displayTable()
 				{
 					tbody += '<td>' + tempValue + '</td>';
 				}
-				//stateValue.push(tempValue);
 			}
 			else{
-				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">∅</span>' + '</td>';
+				tbody += '<td>' + '<span type="text" id="NFAtableoutput' + i + j + '">Ø</span>' + '</td>';
 			}
+			
         }
         tbody += '</tr>';
     }
@@ -217,33 +228,39 @@ function displayTable()
 	var inputStateCorrespondingStateString = "";
 	var TestString = ""
 	
-	for( var j=0; j<inputStateArray.length;j++){
-		TestString += "State = " + inputStateCorrespondingState[j] + " Alphabet = " + inputStateCorrespondingAlphabet[j] + " Next State = " + inputStateArray[j] + " <br>";
+	for( var j=0; j<inputStateArray.length;j++)
+	{
+		TestString += "State = " + inputStateCorrespondingState[j] 
+		+ " Alphabet = " + inputStateCorrespondingAlphabet[j] 
+		+ " Next State = " + inputStateArray[j] + " <br>";
 	}
 	
 	document.getElementById('TestingString').innerHTML = TestString;
 	
 
-	for( var x=0; x< inputStateCorrespondingState.length; x++){
-	for( var i=0; i<State.length ;i++)
-    {
-		if(inputStateCorrespondingState[x] == State[i]){
+	for( var x=0; x< inputStateCorrespondingState.length; x++)
+	{
+		for( var i=0; i<State.length ;i++)
+		{
+			if(inputStateCorrespondingState[x] == State[i]){
 
-			for( var j=0; j<TableDataAlphabets.length +1;j++)
-			{
-				if(j==0){
+				for( var j=0; j<TableDataAlphabets.length +1;j++)
+				{
+					if(j==0){
 
-				}
-				else{
-					if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1]){
-						
-					document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
-				}
+					}
+					else{
+						if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1])
+						{
+							document.getElementById("NFAtableoutput"+ i + j).innerHTML = inputStateArray[x];
+						}
+					}
 				}
 			}
 		}
 	}
-	}
+	
+	
 	var checkStringbody1 = '<table border="1"><td>';
 
 	checkStringbody1 += 'Check strings (input)<br>'
@@ -433,6 +450,7 @@ function addAlphabet(containerID)
 			var getAlphabet = document.createElement("INPUT");
 			getAlphabet.setAttribute("type", "text");
 			getAlphabet.setAttribute("size", "1");
+			getAlphabet.setAttribute("maxlength", "1");
 			getAlphabet.setAttribute("id", "State"+dataCheck+"nextInput"+arrayNextInput);
 
 			arrayNextState += 1;
@@ -440,6 +458,7 @@ function addAlphabet(containerID)
 			var getStates = document.createElement("INPUT");
 			getStates.setAttribute("type", "text");
 			getStates.setAttribute("size", "1");
+			getStates.setAttribute("maxlength", "1");
 			getStates.setAttribute("id", "State"+dataCheck+"nextStates"+arrayNextState);
 			
 			var nodeName = document.createElement("text");
@@ -467,6 +486,7 @@ function addState(containID)
 	var getStates = document.createElement("INPUT");
 	getStates.setAttribute("type", "text");
 	getStates.setAttribute("size", "1");
+	getStates.setAttribute("maxlength", "1");
 	getStates.setAttribute("id", "State"+arrayStates);
 	
 	var string = document.createElement("text");
@@ -477,6 +497,7 @@ function addState(containID)
 	var getAlphabet = document.createElement("INPUT");
 	getAlphabet.setAttribute("type", "text");
 	getAlphabet.setAttribute("size", "1");
+	getAlphabet.setAttribute("maxlength", "1");
 	getAlphabet.setAttribute("id", "State"+arrayStates+"nextInput"+arrayNextInput);
 	
 	var nodeName = document.createElement("text");
@@ -487,6 +508,7 @@ function addState(containID)
 	var getStates2 = document.createElement("INPUT");
 	getStates2.setAttribute("type", "text");
 	getStates2.setAttribute("size", "1");
+	getStates2.setAttribute("maxlength", "1");
 	getStates2.setAttribute("id", "State"+arrayStates+"nextStates"+arrayNextState);
 	
 	var data = document.createElement("text");
