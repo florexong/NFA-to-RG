@@ -13,6 +13,8 @@ function displayTable()
 	/*** DATA STORING ***/
 	TableDataAlphabets = [];
 	var dataScanned = false;
+	var episolunCheck = false;
+	
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
 	{
 		var getState = document.createElement("text");
@@ -72,6 +74,9 @@ function displayTable()
 			{ 
 				console.log("STORING DATA >>> State"+stateCount+"nextInput"+alphaCount+" -!-> Skipped!");
 			}
+			else if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "" || document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "e" ){
+				inputStateCorrespondingAlphabet.push("ε");
+			}
 			else
 			{
 				var getAlphas = document.createElement("text");
@@ -82,11 +87,15 @@ function displayTable()
 				inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
 			}
 			
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && getAlphas.innerHTML != null)
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && getAlphas.innerHTML != null && getAlphas.innerHTML != "e")
 			{
 				TableDataAlphabets.push(getAlphas.innerHTML);
 			}
+			else{
+				episolunCheck = true;
+			}
 		}
+	
 	}
 	
 	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
@@ -119,10 +128,15 @@ function displayTable()
 					var tempNextState = document.createElement("text");
 					tempNextState.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextState"+FinalalphaCount).value;
 					
-					inputStateArray.push(tempNextState.innerHTML);
-					inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
-					inputStateCorrespondingState.push(getState.innerHTML);
-					
+					if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "" || document.getElementById("State"+stateCount+"nextInput"+alphaCount) == "e" ){
+						inputStateArray.push(tempNextState.innerHTML);
+						inputStateCorrespondingAlphabet.push("ε");
+						inputStateCorrespondingState.push(getState.innerHTML);
+					}else{
+						inputStateArray.push(tempNextState.innerHTML);
+						inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
+						inputStateCorrespondingState.push(getState.innerHTML);
+					}
 					dataScanned = true;
 				}
 				catch(err)
@@ -138,9 +152,16 @@ function displayTable()
 				if(dataScanned == true)
 				{
 					TableDataAlphabets.push(getAlphas.innerHTML);
+				}else{
+					episolunCheck = true;
 				}
 			}
 		}
+		
+	}
+	
+	if(episolunCheck == true){
+		TableDataAlphabets.push("ε");
 	}
 	
 	//Arun Table...........................
