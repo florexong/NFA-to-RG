@@ -262,7 +262,17 @@ function displayTable()
 		}
 	}
 	}
+	var checkStringbody1 = '<table border="1"><td>';
+
+	checkStringbody1 += 'Check strings (input)<br>'
 	
+	checkStringbody1 +='<input type="text" id="checkStrings1"><span id="outputCheckStrings1"></span><br><div id="checkStringsContainer"></div><button type="button" onclick="appendCheckStringsInput()">+</button><br></td><td>'
+	
+	checkStringbody1 += '<button type="button" onclick="CheckResults()">Check String</button><br>'
+	
+	checkStringbody1 += '</td></table>'
+	
+	document.getElementById('TestsString').innerHTML = checkStringbody1;
 }
 
 function displayStates()
@@ -716,4 +726,83 @@ function appendColumn()
 		alphabetData.push(ele);
         //
     }
+}
+var checkStringNumb = 1;
+function appendCheckStringsInput()
+{
+	checkStringNumb+=1;
+	var checkStrings = document.createElement("INPUT");
+	checkStrings.setAttribute("type", "text");
+	checkStrings.setAttribute("id", "checkStrings"+checkStringNumb);
+	var CheckResults = document.createElement("SPAN");
+	checkStrings.setAttribute("type", "text");
+	CheckResults.setAttribute("id", "outputCheckStrings"+checkStringNumb);
+	var breakLine = document.createElement("BR");
+	document.getElementById('checkStringsContainer').appendChild(checkStrings);
+	document.getElementById('checkStringsContainer').appendChild(CheckResults);
+	document.getElementById('checkStringsContainer').appendChild(breakLine);
+}
+
+function CheckResults()
+{
+	for(var w = 1; w <=checkStringNumb; w++)
+	{
+		var check = document.getElementById("checkStrings"+w).value;
+		result = checkStringsFunction(check);
+		document.getElementById('outputCheckStrings'+w).innerHTML = " " + result;
+	}
+}
+
+function checkStringsFunction(input)
+{//details havent change
+	var success = 'Reject';
+	var ableToProceed = 'true';
+	var a = State.length;
+	var b = TableDataAlphabets.length;
+	var nextState = State[0];
+	for( var y = 0; y<input.length;y++)
+	{
+		var process = 'false';
+		success = 'Reject';
+		
+		for( var i=0; i<a;i++)
+		{
+			if(State[i]==nextState && process=='false' && ableToProceed=='true'){
+			ableToProceed = 'false'
+			var spanStateArray = [];
+			var spanStateCorrespondingAlphabet = [];
+			for( var j=0; j<b+1;j++)
+			{
+				if(j==0){
+				}
+				else{
+					var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
+
+					if (inputState!='∅' && inputState!='')
+					{
+						//tbody += alphabetValue[j-1] + inputState + ' | ';
+						spanStateCorrespondingAlphabet.push(TableDataAlphabets[j-1]);
+						spanStateArray.push(inputState);
+					}
+				}
+			}
+		
+			for(var x = 0; x<spanStateCorrespondingAlphabet.length; x++)
+			{
+				if(input[y] == spanStateCorrespondingAlphabet[x])
+				{
+					nextState = spanStateArray[x];
+					if (finalStateValue.includes(nextState)){
+						success = 'Accept';
+					}else{
+						success = 'Reject';
+					}
+					ableToProceed = 'true';
+				}
+			}
+			process='true';
+		}
+		}
+	}
+	return success;
 }
