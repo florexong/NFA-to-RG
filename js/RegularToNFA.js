@@ -90,7 +90,8 @@ function displayTable()
 				}
 			}
 			
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) 
+				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				TableDataAlphabets.push(getAlphas.innerHTML);
 			}
@@ -153,16 +154,16 @@ function displayTable()
 				}
 			}
 			
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				if(dataScanned == true)
 				{
 					TableDataAlphabets.push(getAlphas.innerHTML);
 				}
-				else
-				{
-					episolunCheck = true;
-				}
+			}
+			else
+			{
+				episolunCheck = true;
 			}
 		}
 		
