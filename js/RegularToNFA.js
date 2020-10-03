@@ -8,6 +8,12 @@ var inputStateArray = [];
 var inputStateCorrespondingAlphabet = [];
 var inputStateCorrespondingState = [];
 
+var nonNextStateE = [];
+var nonStateE = [];
+
+var non1 = [];
+var non2 = [];
+
 function displayTable()
 {
 	/*** DATA STORING ***/
@@ -274,6 +280,112 @@ function displayTable()
 	checkStringbody1 += '</td></table>'
 	
 	document.getElementById('TestsString').innerHTML = checkStringbody1;
+}
+function nonEpilson (){
+	var theader = '<table border="1">\n';
+    var tbody = '';
+	
+	tbody += '<tr>';
+	tbody += '<td>' + '' + '</td>';
+	for(var i=0; i<TableDataAlphabets.length; i++)
+	{
+		var tempValue = TableDataAlphabets[i];
+		if (tempValue == 'ε'){
+
+		}
+		else{
+			tbody += '<td>' + tempValue + '</td>';
+		}
+	}
+
+	tbody += '</tr>'
+	
+    for( var i=0; i<State.length ;i++)
+    {
+        tbody += '<tr>';
+        for( var j=0; j<TableDataAlphabets.length;j++)
+        {
+			if(j==0){
+				var tempValue = State[i];
+				if(tempValue == startStateValue)
+				{
+					tbody += '<td>' + '<span style="font-size:20px;">&#8594;</span>'+ tempValue + '</td>';
+				}
+				else if(finalStateValue.includes(tempValue))
+				{
+					tbody += '<td>' + '*' + tempValue + '</td>';
+				}
+				else
+				{
+					tbody += '<td>' + tempValue + '</td>';
+				}
+				//stateValue.push(tempValue);
+			}
+			else{
+				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">∅</span>' + '</td>';
+			}
+        }
+        tbody += '</tr>';
+    }
+    var tfooter = '</table>';
+
+    document.getElementById('RGToNFATable').innerHTML = theader + tbody + tfooter;
+	
+	var inputStateArrayString = "";
+	var inputStateCorrespondingAlphabetString = "";
+	var inputStateCorrespondingStateString = "";
+	var TestString = ""
+	
+	for( var j=0; j<inputStateArray.length;j++){
+		TestString += "State = " + inputStateCorrespondingState[j] + " Alphabet = " + inputStateCorrespondingAlphabet[j] + " Next State = " + inputStateArray[j] + " <br>";
+		if ( inputStateCorrespondingAlphabet[j] == "ε"){
+			nonNextStateE.push(inputStateArray[j]);
+			nonStateE.push(inputStateCorrespondingState[j]);
+		}
+	}
+	
+	document.getElementById('TestingString').innerHTML = TestString;
+							var bested = false;
+	for( var x=0; x< inputStateCorrespondingState.length; x++){
+		for( var i=0; i<State.length ;i++)
+	    {
+			if(inputStateCorrespondingState[x] == State[i]){
+				for( var j=0; j<TableDataAlphabets.length ;j++)
+				{
+					if(j==0){
+					}
+					else{
+						var scan = false;
+						for (var k=0; k<=nonStateE.length; k++) {
+							if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1]){
+								if(nonStateE[k] == inputStateArray[x]){
+									document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x] +','+ nonNextStateE[k];
+									scan = true; 
+								}
+								if(scan == false){
+									document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
+								}
+							}
+						}
+						/*if(nonNextStateE[j-1] == inputStateCorrespondingState[x]){
+							if(non1[j-1] !=inputStateArray[x] ){
+								non1.push(inputStateArray[x]);
+								console.log("push what :"+inputStateArray[x]);
+							}
+						}
+						for (var k=0; k<=nonStateE.length; k++) {
+							if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1]){
+								if(nonStateE[k] == State[i]){
+									document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
+								}	
+							}
+
+						}*/
+					}
+				}
+			}
+		}
+	}
 }
 
 function displayStates()
@@ -790,7 +902,7 @@ function checkStringsFunction(input)
 				if(j==0){
 				}
 				else{
-					var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
+					var inputState = document.getElementById("NFAtableoutput"+ i + j).innerHTML;
 
 					if (inputState!='∅' && inputState!='')
 					{
