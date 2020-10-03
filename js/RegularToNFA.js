@@ -86,7 +86,7 @@ function displayTable()
 				getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
 				
 				console.log("STORING DATA >>> State" + stateCount + "nextInput" + alphaCount + " ---> " + getAlphas.innerHTML);
-				if(getAlphas.innerHTML == "" || getAlphas == "e")
+				if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e")
 				{
 					inputStateCorrespondingAlphabet.push("ε");
 				}
@@ -162,10 +162,11 @@ function displayTable()
 			
 			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
-				if(dataScanned == true)
+				if(dataScanned == true )
 				{
 					TableDataAlphabets.push(getAlphas.innerHTML);
 				}
+				
 			}
 			else
 			{
