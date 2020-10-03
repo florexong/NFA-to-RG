@@ -192,7 +192,7 @@ function createTable()
 				stateValue.push(tempValue);
 			}
 			else{
-				tbody += '<td>' +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅">';
+				tbody += '<td>' +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅" maxlength="1">';
 			}
         }
         tbody += '</tr>';
@@ -211,6 +211,7 @@ function appendAlphabet()
 	var inputAlphabet = document.createElement("INPUT");
 	inputAlphabet.setAttribute("type", "text");
 	inputAlphabet.setAttribute("size", "1");
+	inputAlphabet.setAttribute("maxlength", "1");
 	inputAlphabet.setAttribute("id", "a"+alphabetNum);
 	document.getElementById('alphabetContainer').appendChild(inputAlphabet);
 }
@@ -222,6 +223,7 @@ function appendState()
 	var inputState = document.createElement("INPUT");
 	inputState.setAttribute("type", "text");
 	inputState.setAttribute("size", "1");
+	inputState.setAttribute("maxlength", "1");
 	inputState.setAttribute("id", "s"+stateNum);
 	document.getElementById('stateContainer').appendChild(inputState);
 }
@@ -233,6 +235,7 @@ function appendFinalState()
 	var finalState = document.createElement("INPUT");
 	finalState.setAttribute("type", "text");
 	finalState.setAttribute("size", "1");
+	finalState.setAttribute("maxlength", "1");
 	finalState.setAttribute("id", "finalState"+finalStateNum);
 	document.getElementById('finalContainer').appendChild(finalState);
 }
