@@ -915,7 +915,12 @@ function checkStringsFunction(input)
 		
 			for(var x = 0; x<spanStateCorrespondingAlphabet.length; x++)
 			{
-				if(input[y] == spanStateCorrespondingAlphabet[x])
+				var charInput = input[y];
+				if(charInput == "e")
+				{
+					charInput = "ε";
+				}
+				if(charInput == spanStateCorrespondingAlphabet[x])
 				{
 					nextState = spanStateArray[x];
 					if (finalStateValue.includes(nextState)){
