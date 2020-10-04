@@ -281,6 +281,7 @@ function displayTable()
 	
 	document.getElementById('TestsString').innerHTML = checkStringbody1;
 }
+
 function nonEpilson (){
 	var theader = '<table border="1">\n';
     var tbody = '';
@@ -457,11 +458,11 @@ function displayStates()
 				}
 			}
 			
-			
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != " "))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) 
+				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != ""))
 			{
 				if(dataScanned == true)
 				{
@@ -522,7 +523,8 @@ function displayStates()
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) 
+				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				if(dataScanned == true)
 				{
