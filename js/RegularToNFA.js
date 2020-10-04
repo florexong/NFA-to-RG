@@ -29,22 +29,46 @@ function displayTable()
 		
 		if(getState.innerHTML != "")
 		{
-			for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
-			{
-				if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
-				{ 
-					console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -!-> Skipped!");
-				}
-				else
+			if(stateCount == 1)
+			{	
+				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 				{
-					var getAlphas = document.createElement("text");
-					getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-					
-					console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getState.innerHTML);
-					console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getAlphas.innerHTML);
-					
-					inputStateArray.push(getAlphas.innerHTML);
-					inputStateCorrespondingState.push(getState.innerHTML);
+					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
+					{ 
+						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -!-> Skipped!");
+					}
+					else
+					{
+						var getAlphas = document.createElement("text");
+						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
+						
+						console.log("STORING DATA >>> State["+stateCount+"] -=> " + getState.innerHTML);
+						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getAlphas.innerHTML);
+						
+						inputStateArray.push(getAlphas.innerHTML);
+						inputStateCorrespondingState.push(getState.innerHTML);
+					}
+				}
+			}
+			else
+			{
+				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
+				{
+					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
+					{ 
+						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -!-> Skipped!");
+					}
+					else
+					{
+						var getAlphas = document.createElement("text");
+						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
+						
+						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getState.innerHTML);
+						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getAlphas.innerHTML);
+						
+						inputStateArray.push(getAlphas.innerHTML);
+						inputStateCorrespondingState.push(getState.innerHTML);
+					}
 				}
 			}
 			console.log("STORING DATA >>> >>> >>> >>> NEXT BUFFER <<< <<< <<< <<<");
@@ -136,8 +160,7 @@ function displayTable()
 				}
 			}
 			
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) 
-				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				if(dataScanned == true )
 				{
@@ -150,21 +173,17 @@ function displayTable()
 				episolunCheck = true;
 			}
 		}
+		
 	}
 	
-	if(episolunCheck == true && !TableDataAlphabets.includes("ε")){
+	if(episolunCheck == true){
 		TableDataAlphabets.push("ε");
-	}
-	
-	for(var checkTables = 0; checkTables < TableDataAlphabets.length; checkTables++)
-	{
-		console.log(TableDataAlphabets[checkTables]);
 	}
 	
 	var clearMemory = document.getElementById('NFAtable')
 	clearMemory.innerHTML = "";
-
-	/*** Collaborated Table ***/
+	
+	//Arun Table...........................
 	startStateValue = State[0];
 	
     var theader = '<table border="1">\n';
@@ -202,7 +221,7 @@ function displayTable()
 				}
 			}
 			else{
-				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">Ø</span>' + '</td>';
+				tbody += '<td>' + '<span type="text" id="NFAtableoutput' + i + j + '">Ø</span>' + '</td>';
 			}
 			
         }
@@ -241,7 +260,7 @@ function displayTable()
 					else{
 						if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1])
 						{
-							document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
+							document.getElementById("NFAtableoutput"+ i + j).innerHTML = inputStateArray[x];
 						}
 					}
 				}
@@ -262,7 +281,6 @@ function displayTable()
 	
 	document.getElementById('TestsString').innerHTML = checkStringbody1;
 }
-
 function nonEpilson (){
 	var theader = '<table border="1">\n';
     var tbody = '';
@@ -439,11 +457,11 @@ function displayStates()
 				}
 			}
 			
+			
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML) 
-				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != " "))
 			{
 				if(dataScanned == true)
 				{
@@ -504,8 +522,7 @@ function displayStates()
 			var commas = document.createElement("text");
 			commas.innerHTML = ", ";
 			
-			if(!DataAlphabets.includes(getAlphas.innerHTML) 
-				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
+			if(!DataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != ""))
 			{
 				if(dataScanned == true)
 				{
@@ -516,8 +533,6 @@ function displayStates()
 			}
 		}
 	}
-	
-	displayTable();
 }
 
 /***
