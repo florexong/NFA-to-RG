@@ -12,7 +12,6 @@ function checkStringFunction(input)
 {
 	var success = 'Reject';
 	var ableToProceed = 'true';
-	
 	var nextState = startStateValue;
 	for( var y = 0; y<input.length;y++)
 	{
@@ -21,47 +20,45 @@ function checkStringFunction(input)
 		
 		for( var i=0; i<stateNum;i++)
 		{
-			if(stateValue[i]==nextState && process=='false' && ableToProceed=='true'){
+			if(stateValue[i]==nextState && process=='false' && ableToProceed=='true')
+			{
 			ableToProceed = 'false'
 			var inputStateArray = [];
 			var inputStateCorrespondingAlphabet = [];
-			for( var j=0; j<alphabetNum+1;j++)
-			{
-				if(j==0){
-				}
-				else{
-					var inputState = document.getElementById("tableInput"+ i + j).value;
-
-					if (inputState!='∅' && inputState!='')
-					{
-						//tbody += alphabetValue[j-1] + inputState + ' | ';
-						inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
-						inputStateArray.push(inputState);
-					}
-				}
-			}
-		
-			for(var x = 0; x<inputStateCorrespondingAlphabet.length; x++)
-			{
-				if(input[y] == inputStateCorrespondingAlphabet[x])
+				for( var j=0; j<alphabetNum+1;j++)
 				{
-					nextState = inputStateArray[x];
-					if (finalStateValue.includes(nextState)){
-						success = 'Accept';
-					}else{
-						success = 'Reject';
+					if(j==0){
 					}
-					ableToProceed = 'true';
+					else{
+						var inputState = document.getElementById("tableInput"+ i + j).value;
+
+						if (inputState!='∅' && inputState!='')
+						{
+							//tbody += alphabetValue[j-1] + inputState + ' | ';
+							inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
+							inputStateArray.push(inputState);
+						}
+					}
 				}
-			}
+				for(var x = 0; x<inputStateCorrespondingAlphabet.length; x++)
+				{
+					if(input[y] == inputStateCorrespondingAlphabet[x])
+					{
+						nextState = inputStateArray[x];
+						if (finalStateValue.includes(nextState)){
+							success = 'Accept';
+						}else{
+							success = 'Reject';
+						}
+						ableToProceed = 'true';
+					}
+				}
 			process='true';
-		}
+			}
 		}
 	}
 	return success;
 }
-
-	
 
 var alphabetValue = [];
 var stateValue = [];
@@ -76,9 +73,7 @@ function convertToRG()
 		var inputStateCorrespondingAlphabet = [];
         for( var j=0; j<alphabetNum+1;j++)
         {
-			if(j==0){
-
-			}
+			if(j==0){ }
 			else{
 				var inputState = document.getElementById("tableInput"+ i + j).value;
 
@@ -90,7 +85,6 @@ function convertToRG()
 				}
 			}
         }
-		
 		if(inputStateArray.length!=0)
 		{
 			tbody += stateValue[i] + '<span style="font-size:30px;">&#8594;</span>';
@@ -103,7 +97,6 @@ function convertToRG()
 				tbody += inputStateCorrespondingAlphabet[0] + inputStateArray[0];
 			}
 		}
-		
 		for( var x=1; x<inputStateArray.length;x++){
 			if(inputStateCorrespondingAlphabet[x]=='e')
 			{
@@ -114,7 +107,6 @@ function convertToRG()
 				tbody += ' | ' + inputStateCorrespondingAlphabet[x] + inputStateArray[x];
 			}
 		}
-		
 		if((finalStateValue.includes(stateValue[i])) && inputStateArray.length==0)
 		{
 			tbody += stateValue[i] + '<span style="font-size:30px;">&#8594;</span> ε';
@@ -123,42 +115,32 @@ function convertToRG()
 		{
 			tbody += ' | ε';
 		}
-		
         tbody += '<br>';
     }
+	document.getElementById('RegularGrammer').innerHTML = tbody;
 	
-    document.getElementById('RegularGrammer').innerHTML = tbody;
-	
+	//generate checkstring table
 	var checkStringbody = '<table border="1"><td>';
-
 	checkStringbody += 'Check strings (input)<br>'
-	
 	checkStringbody +='<input type="text" id="checkString1"><span id="outputCheckString1"></span><br><div id="checkStringContainer"></div><button type="button" onclick="appendCheckStringInput()">+</button><br></td><td>'
-	
 	checkStringbody += '<button type="button" onclick="CheckResult()">Check String</button><br>'
-	
 	checkStringbody += '</td></table>'
-	
 	document.getElementById('CheckString').innerHTML = checkStringbody;
-	
+
 }
 
 var startStateValue ='';
 var finalStateValue = [];
 function createTable()
 {
-
 	startStateValue = document.getElementById("startState").value;
-	
 	for(var i=0; i<finalStateNum; i++)
 	{
 		var tempValue = document.getElementById("finalState"+(i+1)).value;
 		finalStateValue.push(tempValue);
 	}
-	
     var theader = '<table border="1">\n';
     var tbody = '';
-	
 	tbody += '<tr>';
 	tbody += '<td>' + '' + '</td>';
 	for(var i=0; i<alphabetNum; i++)
@@ -167,9 +149,7 @@ function createTable()
 		tbody += '<td>' + tempValue + '</td>';
 		alphabetValue.push(tempValue);
 	}
-
 	tbody += '</tr>'
-	
     for( var i=0; i<stateNum;i++)
     {
         tbody += '<tr>';
@@ -198,13 +178,12 @@ function createTable()
         tbody += '</tr>';
     }
     var tfooter = '</table>';
-
 	var button = '<input name="generate" type="button" value="Convert to RG" onclick="convertToRG()"/>\n'
     document.getElementById('NFATable').innerHTML = theader + tbody + tfooter + button;
-
 }
 
 var alphabetNum = 1;
+
 function appendAlphabet() 
 {
 	alphabetNum+=1;
@@ -217,6 +196,7 @@ function appendAlphabet()
 }
 
 var stateNum = 1;
+
 function appendState() 
 {
 	stateNum+=1;
@@ -229,6 +209,7 @@ function appendState()
 }
 
 var finalStateNum = 1;
+
 function appendFinalState() 
 {
 	finalStateNum+=1;
@@ -241,6 +222,7 @@ function appendFinalState()
 }
 
 var checkStringNum = 1;
+
 function appendCheckStringInput()
 {
 	checkStringNum+=1;
