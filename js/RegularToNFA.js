@@ -231,19 +231,7 @@ function displayTable()
 
     document.getElementById('NFAtable').innerHTML = theader + tbody + tfooter;
 	
-	var inputStateArrayString = "";
-	var inputStateCorrespondingAlphabetString = "";
-	var inputStateCorrespondingStateString = "";
-	var TestString = ""
-	
-	for( var j=0; j<inputStateArray.length;j++)
-	{
-		TestString += "State = " + inputStateCorrespondingState[j] 
-		+ " Alphabet = " + inputStateCorrespondingAlphabet[j] 
-		+ " Next State = " + inputStateArray[j] + " <br>";
-	}
-	
-	document.getElementById('TestingString').innerHTML = TestString;
+
 	
 
 	for( var x=0; x< inputStateCorrespondingState.length; x++)
@@ -882,7 +870,7 @@ function CheckResults()
 }
 
 function checkStringsFunction(input)
-{//details havent change
+{
 	var success = 'Reject';
 	var ableToProceed = 'true';
 	var a = State.length;
