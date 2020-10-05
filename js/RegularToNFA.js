@@ -34,17 +34,11 @@ function displayTable()
 				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 				{
 					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
-					{ 
-						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -!-> Skipped!");
-					}
+					{ 	}
 					else
 					{
 						var getAlphas = document.createElement("text");
 						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						
-						console.log("STORING DATA >>> State["+stateCount+"] -=> " + getState.innerHTML);
-						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getAlphas.innerHTML);
-						
 						inputStateArray.push(getAlphas.innerHTML);
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
@@ -55,37 +49,27 @@ function displayTable()
 				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 				{
 					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
-					{ 
-						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -!-> Skipped!");
-					}
+					{ }
 					else
 					{
 						var getAlphas = document.createElement("text");
 						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						
-						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getState.innerHTML);
-						console.log("STORING DATA >>> State["+stateCount+"]nextStates["+getNextInput+"] -=> " + getAlphas.innerHTML);
-						
 						inputStateArray.push(getAlphas.innerHTML);
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
 				}
 			}
-			console.log("STORING DATA >>> >>> >>> >>> NEXT BUFFER <<< <<< <<< <<<");
 		}
 		
 		for(var alphaCount = 1; alphaCount <= dataKeeper; alphaCount++)
 		{
 			if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == null)
-			{ 
-				console.log("STORING DATA >>> State"+stateCount+"nextInput"+alphaCount+" -!-> Skipped!");
-			}
+			{ }
 			else
 			{
 				var getAlphas = document.createElement("text");
 				getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
-				
-				console.log("STORING DATA >>> State" + stateCount + "nextInput" + alphaCount + " ---> " + getAlphas.innerHTML);
+
 				if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e")
 				{
 					inputStateCorrespondingAlphabet.push("ε");
@@ -113,9 +97,6 @@ function displayTable()
 		
 		var getState = document.createElement("text");
 		getState.innerHTML = document.getElementById("FinalState"+FinalstateCount).value;
-		
-		console.log("STORING DATA >>> FinalState[" + FinalstateCount + "] ---> " + getState.innerHTML);
-		
 		State.push(getState.innerHTML);
 		finalStateValue.push(getState.innerHTML);
 		
@@ -123,18 +104,13 @@ function displayTable()
 		{
 			dataScanned = false;
 			if(document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount) == null)
-			{ 
-				console.log("STORING DATA >>> finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" -!-> Skipped!");
-			}
+			{ }
 			else
 			{
 				try
 				{
 					var getAlphas = document.createElement("text");
 					getAlphas.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount).value;
-					
-					console.log("STORING DATA >>> finalState"+FinalstateCount+"NextInput"+FinalalphaCount+" ---> ("+getAlphas.innerHTML+")");
-					
 					var tempNextState = document.createElement("text");
 					tempNextState.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextState"+FinalalphaCount).value;
 					
@@ -154,8 +130,6 @@ function displayTable()
 				}
 				catch(err)
 				{
-					console.log(err);
-					
 					dataScanned = false;
 				}
 			}
@@ -166,7 +140,6 @@ function displayTable()
 				{
 					TableDataAlphabets.push(getAlphas.innerHTML);
 				}
-				
 			}
 			else
 			{
@@ -230,9 +203,6 @@ function displayTable()
     var tfooter = '</table>';
 
     document.getElementById('NFAtable').innerHTML = theader + tbody + tfooter;
-	
-
-	
 
 	for( var x=0; x< inputStateCorrespondingState.length; x++)
 	{
