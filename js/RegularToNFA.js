@@ -184,13 +184,11 @@ function displayTable()
 	{
 		for( var i=0; i<State.length ;i++)
 		{
-			if(inputStateCorrespondingState[x] == State[i]){
-
+			if(inputStateCorrespondingState[x] == State[i])
+			{
 				for( var j=0; j<TableDataAlphabets.length +1;j++)
 				{
-					if(j==0){
-
-					}
+					if(j==0){ }
 					else{
 						if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1])
 						{

@@ -65,7 +65,7 @@ var stateValue = [];
 	
 function convertToRG()
 {
-	document.getElementById('RegularGrammer').innerHTML = '';
+	document.getElementById('RegularGrammar').innerHTML = '';
     var tbody = '';
     for( var i=0; i<stateNum;i++)
     {
@@ -117,7 +117,7 @@ function convertToRG()
 		}
         tbody += '<br>';
     }
-	document.getElementById('RegularGrammer').innerHTML = tbody;
+	document.getElementById('RegularGrammar').innerHTML = tbody;
 	
 	//generate checkstring table
 	var checkStringbody = '<table border="1"><td>';
