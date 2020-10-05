@@ -247,7 +247,6 @@ function nonEpilson (){
 				{
 					tbody += '<td>' + tempValue + '</td>';
 				}
-				//stateValue.push(tempValue);
 			}
 			else{
 				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">∅</span>' + '</td>';
@@ -259,9 +258,6 @@ function nonEpilson (){
 
     document.getElementById('RGToNFATable').innerHTML = theader + tbody + tfooter;
 	
-	var inputStateArrayString = "";
-	var inputStateCorrespondingAlphabetString = "";
-	var inputStateCorrespondingStateString = "";
 	var TestString = ""
 	
 	for( var j=0; j<inputStateArray.length;j++){

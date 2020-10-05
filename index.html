@@ -157,17 +157,14 @@
 							<span id="finalstateContainer1"></span>
 								<br>
 							<button type="button" onclick="addFinalState('finalstateContainer1')">Add Final State</button>
-							<br><br><button type="button" onclick="displayStates()">Convert</button>
+							<br><br><button type="button" onclick="displayStates() +displayTable() +nonEpilson()">Convert</button>
 						</td>
 					</table>
-					
 					<br>
 						Output Data
 					<br>
-					
 					<table id="FormalDescriptionView">
-							<tr>
-								<td>
+						<td>
 									<h2> Formal Description </h2>
 									<p><b> M = {Q, Σ, δ, P₀, F} </p></b>
 										Q = { <span id="StatesState"></span> } 
@@ -181,21 +178,23 @@
 										F = { <span id="EndingState"></span> } 
 										<br>
 								</td>
-								
-								<td id="nfaTables">
+						</table>
+						<br>		
+						<table>
+								<td id="εnfaTable">
 									<h2> ε-NFA Table </h2>
 										<br>
-									<button type="button" onclick="displayTable()">Generate Table</button>
 									<span id="NFAtable"></span>
 								</td>
-								<td id="nfaTablesE">
+							</table>
+						<br>
+						<table>
+								<td id="non-ε nfaTable">
 									<h2> NFA Table w/o ε </h2>
 										<br>
-									<button type="button" onclick="nonEpilson()">Generate Table</button>
-									<span id="NFAtable"></span>
+									<span id="RGToNFAtable"></span>
 								</td>
-							</tr>
-					</table>
+						</table>
 					
 					<div id="RGToNFATable"></div><br><br>
 					
