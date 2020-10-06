@@ -1,3 +1,12 @@
+var checkStringNum = 1;
+var finalStateNum = 1;
+var stateNum = 1;
+var alphabetNum = 1;
+var startStateValue ='';
+var finalStateValue = [];
+var alphabetValue = [];
+var stateValue = [];
+
 function CheckResult()
 {
 	for(var w = 1; w <=checkStringNum; w++)
@@ -59,9 +68,61 @@ function checkStringFunction(input)
 	return success;
 }
 
-var alphabetValue = [];
-var stateValue = [];
-	
+function createTable()
+{
+	startStateValue = document.getElementById("startState").value;
+	for(var i=0; i<finalStateNum; i++)
+	{
+		var tempValue = document.getElementById("finalState"+(i+1)).value;
+		finalStateValue.push(tempValue);
+	}
+    var theader = '<table border="1">\n';
+    var tbody = '';
+	tbody += '<tr>';
+	tbody += '<td>' + '' + '</td>';
+	for(var i=0; i<alphabetNum; i++)
+	{
+		var tempValue = document.getElementById("a"+(i+1)).value;
+		if(tempValue == "e"){
+			tbody += '<td>ε</td>';
+		}else{
+			tbody += '<td>' + tempValue + '</td>';
+		}
+		alphabetValue.push(tempValue);
+	}
+	tbody += '</tr>'
+    for( var i=0; i<stateNum;i++)
+    {
+        tbody += '<tr>';
+        for( var j=0; j<alphabetNum+1;j++)
+        {
+			if(j==0){
+				var tempValue = document.getElementById("s"+(i+1)).value;
+				if(tempValue == startStateValue)
+				{
+					tbody += '<td>' + '<span style="font-size:20px;">&#8594;</span>'+ tempValue + '</td>';
+				}
+				else if(finalStateValue.includes(tempValue))
+				{
+					tbody += '<td>' + '*' + tempValue + '</td>';
+				}
+				else
+				{
+					tbody += '<td>' + tempValue + '</td>';
+				}
+				stateValue.push(tempValue);
+			}
+			else{
+				tbody += '<td>' +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅" maxlength="1">';
+			}
+        }
+        tbody += '</tr>';
+    }
+    var tfooter = '</table>';
+	var button = '<input name="generate" type="button" value="Convert to RG" onclick="convertToRG()"/>\n'
+    document.getElementById('NFATable').innerHTML = theader + tbody + tfooter + button;
+}
+
 function convertToRG()
 {
 	document.getElementById('RegularGrammar').innerHTML = '';
@@ -128,61 +189,6 @@ function convertToRG()
 
 }
 
-var startStateValue ='';
-var finalStateValue = [];
-function createTable()
-{
-	startStateValue = document.getElementById("startState").value;
-	for(var i=0; i<finalStateNum; i++)
-	{
-		var tempValue = document.getElementById("finalState"+(i+1)).value;
-		finalStateValue.push(tempValue);
-	}
-    var theader = '<table border="1">\n';
-    var tbody = '';
-	tbody += '<tr>';
-	tbody += '<td>' + '' + '</td>';
-	for(var i=0; i<alphabetNum; i++)
-	{
-		var tempValue = document.getElementById("a"+(i+1)).value;
-		tbody += '<td>' + tempValue + '</td>';
-		alphabetValue.push(tempValue);
-	}
-	tbody += '</tr>'
-    for( var i=0; i<stateNum;i++)
-    {
-        tbody += '<tr>';
-        for( var j=0; j<alphabetNum+1;j++)
-        {
-			if(j==0){
-				var tempValue = document.getElementById("s"+(i+1)).value;
-				if(tempValue == startStateValue)
-				{
-					tbody += '<td>' + '<span style="font-size:20px;">&#8594;</span>'+ tempValue + '</td>';
-				}
-				else if(finalStateValue.includes(tempValue))
-				{
-					tbody += '<td>' + '*' + tempValue + '</td>';
-				}
-				else
-				{
-					tbody += '<td>' + tempValue + '</td>';
-				}
-				stateValue.push(tempValue);
-			}
-			else{
-				tbody += '<td>' +  '<input type="text" id="tableInput' + i + j + '" size="1" value="∅" maxlength="1">';
-			}
-        }
-        tbody += '</tr>';
-    }
-    var tfooter = '</table>';
-	var button = '<input name="generate" type="button" value="Convert to RG" onclick="convertToRG()"/>\n'
-    document.getElementById('NFATable').innerHTML = theader + tbody + tfooter + button;
-}
-
-var alphabetNum = 1;
-
 function appendAlphabet() 
 {
 	alphabetNum+=1;
@@ -193,8 +199,6 @@ function appendAlphabet()
 	inputAlphabet.setAttribute("id", "a"+alphabetNum);
 	document.getElementById('alphabetContainer').appendChild(inputAlphabet);
 }
-
-var stateNum = 1;
 
 function appendState() 
 {
@@ -207,8 +211,6 @@ function appendState()
 	document.getElementById('stateContainer').appendChild(inputState);
 }
 
-var finalStateNum = 1;
-
 function appendFinalState() 
 {
 	finalStateNum+=1;
@@ -219,8 +221,6 @@ function appendFinalState()
 	finalState.setAttribute("id", "finalState"+finalStateNum);
 	document.getElementById('finalContainer').appendChild(finalState);
 }
-
-var checkStringNum = 1;
 
 function appendCheckStringInput()
 {
@@ -235,4 +235,45 @@ function appendCheckStringInput()
 	document.getElementById('checkStringContainer').appendChild(checkString);
 	document.getElementById('checkStringContainer').appendChild(CheckResult);
 	document.getElementById('checkStringContainer').appendChild(breakLine);
+}
+
+function resetTab()
+{
+	stateNum = 1;
+	finalStateNum = 1;
+	checkStringNum = 1;
+	alphabetNum = 1;
+	startStateValue ='';
+	finalStateValue = [];
+	alphabetValue = [];
+	stateValue = [];
+	
+	document.getElementById('a1').value="";
+	document.getElementById('s1').value="";
+	document.getElementById('startState').value="";
+	document.getElementById('finalState1').value="";
+	
+	document.getElementById('finalContainer').innerHTML="";
+	document.getElementById('stateContainer').innerHTML="";
+	document.getElementById('alphabetContainer').innerHTML="";
+	try {
+		document.getElementById('checkStringContainer').innerHTML="";
+	}
+	catch(err) {
+	}	
+	try {
+		document.getElementById('NFATable').innerHTML="";
+	}
+	catch(err) {
+	}
+	try {
+		document.getElementById('CheckString').innerHTML="";
+	}
+	catch(err) {
+	}
+	try {
+		document.getElementById('RegularGrammar').innerHTML="";
+	}
+	catch(err) {
+	}
 }
