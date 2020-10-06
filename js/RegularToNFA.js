@@ -136,6 +136,7 @@ function displayTable()
 	if(episolunCheck == true){
 		TableDataAlphabets.push("ε");
 	}
+	
 	var clearMemory = document.getElementById('NFAtable')
 	clearMemory.innerHTML = "";
 
@@ -464,19 +465,24 @@ function addAlphabet(containerID)
 		if(dataRead == containerID)
 		{
 			arrayNextInput += 1;
+			
 			var getAlphabet = document.createElement("INPUT");
 			getAlphabet.setAttribute("type", "text");
 			getAlphabet.setAttribute("size", "1");
 			getAlphabet.setAttribute("maxlength", "1");
 			getAlphabet.setAttribute("id", "State"+dataCheck+"nextInput"+arrayNextInput);
+			
 			arrayNextState += 1;
+			
 			var getStates = document.createElement("INPUT");
 			getStates.setAttribute("type", "text");
 			getStates.setAttribute("size", "1");
 			getStates.setAttribute("maxlength", "1");
 			getStates.setAttribute("id", "State"+dataCheck+"nextStates"+arrayNextState);
+			
 			var nodeName = document.createElement("text");
 			nodeName.innerHTML = " | ";
+			
 			document.getElementById(containerID).appendChild(getAlphabet);
 			document.getElementById(containerID).appendChild(getStates);
 			document.getElementById(containerID).appendChild(nodeName);
@@ -493,44 +499,58 @@ function addState(containID)
 	arrayNextInput = 0;
 	arrayNextState = 0;
 	arrayStates += 1;
+	
 	var getStates = document.createElement("INPUT");
 	getStates.setAttribute("type", "text");
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("maxlength", "1");
 	getStates.setAttribute("id", "State"+arrayStates);
+	
 	var string = document.createElement("text");
-	string.innerHTML = " => ";
+	string.innerHTML = " → ";
+	
 	arrayNextInput += 1;
+	
 	var getAlphabet = document.createElement("INPUT");
 	getAlphabet.setAttribute("type", "text");
 	getAlphabet.setAttribute("size", "1");
 	getAlphabet.setAttribute("maxlength", "1");
 	getAlphabet.setAttribute("id", "State"+arrayStates+"nextInput"+arrayNextInput);
+	
 	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " ";
+	
 	arrayNextState += 1;
+	
 	var getStates2 = document.createElement("INPUT");
 	getStates2.setAttribute("type", "text");
 	getStates2.setAttribute("size", "1");
 	getStates2.setAttribute("maxlength", "1");
 	getStates2.setAttribute("id", "State"+arrayStates+"nextStates"+arrayNextState);
+	
 	var data = document.createElement("text");
 	data.innerHTML = " | ";
+	
 	arrayContainer += 1;
+	
 	var newContainers = document.createElement('span');
 	newContainers.setAttribute("id", "alphabetContainer"+arrayContainer);
+	
 	arrayButton += 1;
-	var dataF = "alphabetContainer"+arrayContainer;
-	console.log("dataF -> " + dataF);
+	
 	var btn = document.createElement("BUTTON");
 	btn.innerHTML = "Add Alphabet";
 	btn.setAttribute("type", "button");
 	btn.setAttribute("id", "button"+arrayButton);
 	btn.setAttribute("onclick", "addAlphabet(" + "'" + 'alphabetContainer' + arrayContainer + "'" + ")");
+	
 	var newLines = document.createElement('br');
+	
 	arrayContainerStates += 1;
+	
 	var newContainer = document.createElement('span');
 	newContainer.setAttribute("id", "stateContainer"+arrayContainerStates);
+	
 	document.getElementById(containID).appendChild(getStates);
 	document.getElementById(containID).appendChild(string);
 	document.getElementById(containID).appendChild(getAlphabet);
@@ -561,17 +581,22 @@ function addFinalAlphabet(containerID)
 		if(dataRead == containerID)
 		{
 			arrayFinalNextInput += 1;
+			
 			var getAlphabet = document.createElement("INPUT");
 			getAlphabet.setAttribute("type", "text");
 			getAlphabet.setAttribute("size", "1");
 			getAlphabet.setAttribute("id", "finalState"+dataCheck+"NextInput"+arrayFinalNextInput);
+			
 			arrayFinalNextState += 1;
+			
 			var getStates = document.createElement("INPUT");
 			getStates.setAttribute("type", "text");
 			getStates.setAttribute("size", "1");
-			getStates.setAttribute("id", "finalState"+dataCheck+"NextState"+arrayFinalNextState);			
+			getStates.setAttribute("id", "finalState"+dataCheck+"NextState"+arrayFinalNextState);
+			
 			var nodeName = document.createElement("text");
 			nodeName.innerHTML = " | ";			
+			
 			document.getElementById(containerID).appendChild(getAlphabet);
 			document.getElementById(containerID).appendChild(getStates);
 			document.getElementById(containerID).appendChild(nodeName);
@@ -582,47 +607,65 @@ function addFinalAlphabet(containerID)
 epsilonCounter = 1;
 function addFinalState(containID)
 {
+	// Reset Counter
 	arrayFinalNextInput = 0;
 	arrayFinalNextState = 0;	
-	arrayFinalState += 1;	
+	arrayFinalState += 1;
+	
 	var getStates = document.createElement("INPUT");
 	getStates.setAttribute("type", "text");
 	getStates.setAttribute("size", "1");
 	getStates.setAttribute("id", "FinalState"+arrayFinalState);	
+	
 	var string = document.createElement("text");
-	string.innerHTML = " => ";	
+	string.innerHTML = " → ";	
+	
 	arrayFinalNextInput += 1;
+	
 	var getAlphabet = document.createElement("INPUT");
 	getAlphabet.setAttribute("type", "text");
 	getAlphabet.setAttribute("size", "1");
 	getAlphabet.setAttribute("id", "finalState"+arrayFinalState+"NextInput"+arrayFinalNextInput);	
+	
 	var nodeName = document.createElement("text");
 	nodeName.innerHTML = " ";	
+	
 	arrayFinalNextState += 1;	
+	
 	var getStates2 = document.createElement("INPUT");
 	getStates2.setAttribute("type", "text");
 	getStates2.setAttribute("size", "1");
-	getStates2.setAttribute("id", "finalState"+arrayFinalState+"NextState"+arrayFinalNextState);	
+	getStates2.setAttribute("id", "finalState"+arrayFinalState+"NextState"+arrayFinalNextState);
+	
 	var data = document.createElement("text");
 	data.innerHTML = " | ";	
+	
 	finalArrayContainer += 1;	
+	
 	var newContainers = document.createElement('span');
 	newContainers.setAttribute("id", "finalContainer"+finalArrayContainer);	
+	
 	epsilonCounter += 1;	
+	
 	var newEpsilon = document.createElement('span');
 	newEpsilon.setAttribute("id", "epsilon"+epsilonCounter);
 	newEpsilon.innerHTML = "ε ";	
-	finalArrayButton += 1;	
-	var dataF = "finalContainer"+finalArrayContainer;
+	
+	finalArrayButton += 1;
+	
 	var btn = document.createElement("BUTTON");
 	btn.innerHTML = "Add Final Alphabet";
 	btn.setAttribute("type", "button");
 	btn.setAttribute("id", "finalbutton"+finalArrayButton);
 	btn.setAttribute("onclick", "addFinalAlphabet(" + "'" + 'finalContainer' + finalArrayContainer + "'" + ")");	
+	
 	var newLines = document.createElement('br');	
+	
 	finalArrayContainerStates += 1;	
+	
 	var newContainer = document.createElement('span');
 	newContainer.setAttribute("id", "finalstateContainer"+finalArrayContainerStates);
+	
 	document.getElementById(containID).appendChild(getStates);
 	document.getElementById(containID).appendChild(string);
 	document.getElementById(containID).appendChild(getAlphabet);
@@ -634,65 +677,6 @@ function addFinalState(containID)
 	document.getElementById(containID).appendChild(btn);
 	document.getElementById(containID).appendChild(newLines);
 	document.getElementById(containID).appendChild(newContainer);
-}
-
-bigAlphabets = 1;
-smallAlphabets = 2;
-stateData = [];
-alphabetData = [];
-
-function appendRow() 
-{
-    var tbl = document.getElementById('rgTable'), // table reference
-        row = tbl.insertRow(tbl.rows.length),      // append table row
-		i;
-		
-    // insert table cells to the new row
-    for (i = 0; i < tbl.rows[0].cells.length; i++) {
-        var td = document.createElement('td');
-		td = row.insertCell(i);
-		if(i == 0)
-		{
-			td.innerHTML = "State "+ String.fromCharCode(65 + bigAlphabets); ;
-		}
-		else
-		{
-			var ele = document.createElement('input');
-			ele.setAttribute('type', 'text');
-			ele.setAttribute('value', '');
-			td.appendChild(ele);
-		}
-		stateData.push(ele);
-    }
-    bigAlphabets++;
-}
-
-// append column to the HTML table
-function appendColumn() 
-{
-    var tbl = document.getElementById('rgTable'), // table reference
-        i;
-    // open loop for each row and append cell
-    for (i = 0; i <= tbl.rows.length; i++)
-	{
-		var td = document.createElement('td');
-		td = tbl.rows[i].insertCell(tbl.rows[i].cells.length);
-		if(i == 0)
-		{
-			td.innerHTML =  "State "+ value;
-			value++;
-			td.innerHTML =  String.fromCharCode(97 + smallAlphabets);
-			smallAlphabets++;
-		}
-		else
-		{
-			var ele = document.createElement('input');
-			ele.setAttribute('type', 'text');
-			ele.setAttribute('value', '');
-			td.appendChild(ele);
-		}
-		alphabetData.push(ele);
-    }
 }
 
 var checkStringNumb = 1;
