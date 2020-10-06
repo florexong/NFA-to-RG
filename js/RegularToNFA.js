@@ -25,13 +25,19 @@ function displayTable()
 			{	
 				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 				{
-					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
-					{ 	}
-					else
+					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) != null)
 					{
 						var getAlphas = document.createElement("text");
 						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						inputStateArray.push(getAlphas.innerHTML);
+						
+						if(getAlphas.innerHTML == "")
+						{
+							inputStateArray.push("Ø");
+						}
+						else
+						{
+							inputStateArray.push(getAlphas.innerHTML);
+						}
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
 				}
@@ -40,13 +46,19 @@ function displayTable()
 			{
 				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 				{
-					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) == null)
-					{ }
-					else
+					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) != null)
 					{
 						var getAlphas = document.createElement("text");
 						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						inputStateArray.push(getAlphas.innerHTML);
+						
+						if(getAlphas.innerHTML == "")
+						{
+							inputStateArray.push("Ø");
+						}
+						else
+						{
+							inputStateArray.push(getAlphas.innerHTML);
+						}
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
 				}
@@ -54,9 +66,7 @@ function displayTable()
 		}
 		for(var alphaCount = 1; alphaCount <= dataKeeper; alphaCount++)
 		{
-			if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) == null)
-			{ }
-			else
+			if(document.getElementById("State"+stateCount+"nextInput"+alphaCount) != null)
 			{
 				var getAlphas = document.createElement("text");
 				getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextInput"+alphaCount).value;
@@ -69,6 +79,7 @@ function displayTable()
 					inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
 				}
 			}
+			
 			if(!TableDataAlphabets.includes(getAlphas.innerHTML) 
 				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
@@ -80,45 +91,68 @@ function displayTable()
 			}
 		}
 	}
+	
 	for(var FinalstateCount = 1; FinalstateCount <= arrayFinalState; FinalstateCount++)
 	{
 		var getState = document.createElement("text");
 		getState.innerHTML = document.getElementById("FinalState"+FinalstateCount).value;
+		
 		State.push(getState.innerHTML);
 		finalStateValue.push(getState.innerHTML);
+		
 		for(var FinalalphaCount = 1; FinalalphaCount <= dataFinalKeeper; FinalalphaCount++)
 		{
 			dataScanned = false;
-			if(document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount) == null)
-			{ }
-			else
+			if(document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount) != null)
 			{
 				try
 				{
 					var getAlphas = document.createElement("text");
 					getAlphas.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextInput"+FinalalphaCount).value;
+					
 					var tempNextState = document.createElement("text");
 					tempNextState.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextState"+FinalalphaCount).value;
-					if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e" )
+					
+					console.log("finalState["+FinalstateCount+"]NextState["+FinalalphaCount+"] -> " +tempNextState.innerHTML);
+					
+					if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e")
 					{
-						inputStateArray.push(tempNextState.innerHTML);
+						if(tempNextState.innerHTML == "")
+						{
+							inputStateArray.push("Ø");
+						}
+						else
+						{
+							inputStateArray.push(tempNextState.innerHTML);
+						}
+						
 						inputStateCorrespondingAlphabet.push("ε");
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
 					else
 					{
-						inputStateArray.push(tempNextState.innerHTML);
+						if(tempNextState.innerHTML == "")
+						{
+							inputStateArray.push("Ø");
+						}
+						else
+						{
+							inputStateArray.push(tempNextState.innerHTML);
+						}
+						
 						inputStateCorrespondingAlphabet.push(getAlphas.innerHTML);
 						inputStateCorrespondingState.push(getState.innerHTML);
 					}
 					dataScanned = true;
 				}
+				
 				catch(err)
 				{
 					dataScanned = false;
 				}
 			}
-			if(!TableDataAlphabets.includes(getAlphas.innerHTML) && (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
+			if(!TableDataAlphabets.includes(getAlphas.innerHTML) 
+				&& (getAlphas.innerHTML != null && getAlphas.innerHTML != "" && getAlphas.innerHTML != "e"))
 			{
 				if(dataScanned == true )
 				{
@@ -131,6 +165,7 @@ function displayTable()
 			}
 		}
 	}
+	
 	if(episolunCheck == true){
 		TableDataAlphabets.push("ε");
 	}
@@ -248,7 +283,7 @@ function nonEpilson (){
 				}
 			}
 			else{
-				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">∅</span>' + '</td>';
+				tbody += '<td>' + '<span type="text" id="RGtableOutput' + i + j + '">Ø</span>' + '</td>';
 			}
         }
         tbody += '</tr>';
@@ -343,6 +378,7 @@ function displayStates()
 	/*** Region First State ***/
 	var firstState = document.getElementById("StartingState");
 	firstState.innerHTML = document.getElementById("State1").value;
+	
 	var clearData = document.getElementById("StatesState");
 	clearData.innerHTML = "";
 	
