@@ -260,7 +260,7 @@ function nonEpilson (){
 		}
 	}
 
-	tbody += '</tr>'
+	tbody += '</tr>';
 	
     for( var i=0; i<State.length ;i++)
     {
