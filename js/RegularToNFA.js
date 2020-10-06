@@ -11,7 +11,11 @@ var nonStateE = [];
 function displayTable()
 {
 	/*** DATA STORING ***/
+	State =[];
+	inputStateCorrespondingAlphabet = [];
+	inputStateCorrespondingState = [];
 	TableDataAlphabets = [];
+	
 	var dataScanned = false;
 	var episolunCheck = false;
 	for(var stateCount = 1; stateCount <= arrayStates; stateCount++)
@@ -113,8 +117,6 @@ function displayTable()
 					var tempNextState = document.createElement("text");
 					tempNextState.innerHTML = document.getElementById("finalState"+FinalstateCount+"NextState"+FinalalphaCount).value;
 					
-					console.log("finalState["+FinalstateCount+"]NextState["+FinalalphaCount+"] -> " +tempNextState.innerHTML);
-					
 					if(getAlphas.innerHTML == "" || getAlphas.innerHTML == "e")
 					{
 						if(tempNextState.innerHTML == "")
@@ -170,12 +172,13 @@ function displayTable()
 		TableDataAlphabets.push("ε");
 	}
 	
-	var clearMemory = document.getElementById('NFAtable')
-	clearMemory.innerHTML = "";
-
+	console.log(" -> ["+document.getElementById('RGTableWEpsilon').innerHTML+"]");
+	document.getElementById('RGTableWEpsilon').innerHTML = "";
+	console.log("Clearing? -> ["+document.getElementById('RGTableWEpsilon').innerHTML+"]");
+	
 	//Generate ε-NFA Table
 	startStateValue = State[0];
-    var theader = '<table border="1">\n';
+    var theader = '<table id="RG2NFATABLE" border="1">\n';
     var tbody = '';
 	tbody += '<tr>';
 	tbody += '<td>' + '' + '</td>';
@@ -190,6 +193,7 @@ function displayTable()
         tbody += '<tr>';
         for( var j=0; j<TableDataAlphabets.length+1;j++)
         {
+			//console.log("current Array -> State["+i+"] = "+State[i]+" NextInput["+j+"] = "+TableDataAlphabets[j]);
 			if(j==0)
 			{
 				var tempValue = State[i];
@@ -213,7 +217,8 @@ function displayTable()
         tbody += '</tr>';
     }
     var tfooter = '</table>';
-    document.getElementById('NFAtable').innerHTML = theader + tbody + tfooter;
+    document.getElementById('RGTableWEpsilon').innerHTML = theader + tbody + tfooter;
+	
 	for( var x=0; x< inputStateCorrespondingState.length; x++)
 	{
 		for( var i=0; i<State.length ;i++)
@@ -244,6 +249,10 @@ function displayTable()
 }
 
 function nonEpilson (){
+	
+	nonNextStateE = [];
+	nonStateE = [];
+
 	var theader = '<table border="1">\n';
     var tbody = '';
 	
