@@ -7,8 +7,6 @@ var inputStateCorrespondingAlphabet = [];
 var inputStateCorrespondingState = [];
 var nonNextStateE = [];
 var nonStateE = [];
-var non1 = [];
-var non2 = [];
 
 function displayTable()
 {
@@ -269,8 +267,6 @@ function nonEpilson (){
 		}
 	}
 	
-	document.getElementById('TestingString').innerHTML = TestString;
-							var bested = false;
 	for( var x=0; x< inputStateCorrespondingState.length; x++){
 		for( var i=0; i<State.length ;i++)
 	    {
@@ -292,20 +288,6 @@ function nonEpilson (){
 								}
 							}
 						}
-						/*if(nonNextStateE[j-1] == inputStateCorrespondingState[x]){
-							if(non1[j-1] !=inputStateArray[x] ){
-								non1.push(inputStateArray[x]);
-								console.log("push what :"+inputStateArray[x]);
-							}
-						}
-						for (var k=0; k<=nonStateE.length; k++) {
-							if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1]){
-								if(nonStateE[k] == State[i]){
-									document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
-								}	
-							}
-
-						}*/
 					}
 				}
 			}
