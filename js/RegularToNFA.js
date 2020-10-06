@@ -23,48 +23,25 @@ function displayTable()
 		var getState = document.createElement("text");
 		getState.innerHTML = document.getElementById("State"+stateCount).value;
 		State.push(getState.innerHTML);
+		
 		if(getState.innerHTML != "")
 		{
-			if(stateCount == 1)
-			{	
-				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
-				{
-					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) != null)
-					{
-						var getAlphas = document.createElement("text");
-						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						
-						if(getAlphas.innerHTML == "")
-						{
-							inputStateArray.push("Ø");
-						}
-						else
-						{
-							inputStateArray.push(getAlphas.innerHTML);
-						}
-						inputStateCorrespondingState.push(getState.innerHTML);
-					}
-				}
-			}
-			else
+			for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
 			{
-				for(var getNextInput = 1; getNextInput <= dataKeeper; getNextInput++)
+				if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) != null)
 				{
-					if(document.getElementById("State"+stateCount+"nextStates"+getNextInput) != null)
+					var getAlphas = document.createElement("text");
+					getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
+					
+					if(getAlphas.innerHTML == "")
 					{
-						var getAlphas = document.createElement("text");
-						getAlphas.innerHTML = document.getElementById("State"+stateCount+"nextStates"+getNextInput).value;
-						
-						if(getAlphas.innerHTML == "")
-						{
-							inputStateArray.push("Ø");
-						}
-						else
-						{
-							inputStateArray.push(getAlphas.innerHTML);
-						}
-						inputStateCorrespondingState.push(getState.innerHTML);
+						inputStateArray.push("Ø");
 					}
+					else
+					{
+						inputStateArray.push(getAlphas.innerHTML);
+					}
+					inputStateCorrespondingState.push(getState.innerHTML);
 				}
 			}
 		}
