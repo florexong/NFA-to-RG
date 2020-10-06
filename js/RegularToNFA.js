@@ -301,10 +301,10 @@ function nonEpilson (){
 
     document.getElementById('RGToNFATable').innerHTML = theader + tbody + tfooter;
 	
-	var TestString = ""
+	
 	
 	for( var j=0; j<inputStateArray.length;j++){
-		TestString += "State = " + inputStateCorrespondingState[j] + " Alphabet = " + inputStateCorrespondingAlphabet[j] + " Next State = " + inputStateArray[j] + " <br>";
+		
 		if ( inputStateCorrespondingAlphabet[j] == "ε"){
 			nonNextStateE.push(inputStateArray[j]);
 			nonStateE.push(inputStateCorrespondingState[j]);
