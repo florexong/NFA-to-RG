@@ -315,7 +315,12 @@ function nonEpilson (){
 						for (var k=0; k<=nonStateE.length; k++) {
 							if(inputStateCorrespondingAlphabet[x]==TableDataAlphabets[j-1]){
 								if(nonStateE[k] == inputStateArray[x]){
-									document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x] +','+ nonNextStateE[k];
+									if(nonNextStateE[k]!="" && nonNextStateE[k]!="Ø" && nonNextStateE[k]!=null){
+										document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x] +','+ nonNextStateE[k];
+									}
+									else{
+										document.getElementById("RGtableOutput"+ i + j).innerHTML = inputStateArray[x];
+									}
 									scan = true; 
 								}
 								if(scan == false){
@@ -361,8 +366,17 @@ function nonEpilson (){
 				if(j==0){
 				}
 				else{
-					//var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
-					document.getElementById("RGtableOutput"+ i + j).innerHTML = spanStateArray[j-1];	
+					var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
+					if(spanStateArray[j-1]!=null){
+					if(inputState == "" || inputState == "Ø"){
+						document.getElementById("RGtableOutput"+ i + j).innerHTML = spanStateArray[j-1];
+					}
+					else{
+						if(spanStateArray[j-1]!="" && spanStateArray[j-1]!="Ø" && spanStateArray[j-1]!=null){
+							document.getElementById("RGtableOutput"+ i + j).innerHTML += ' , ' + spanStateArray[j-1];
+						}
+					}
+					}
 					
 				}
 			}
