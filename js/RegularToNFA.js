@@ -311,6 +311,49 @@ function nonEpilson (){
 			}
 		}
 	}
+	
+	var a = State.length;
+	var b = TableDataAlphabets.length;
+
+	for (var k=0; k<=nonStateE.length; k++) 
+	{
+		var spanStateArray = [];
+
+		for( var i=0; i<a;i++)
+		{
+			if (nonNextStateE[k] == State[i]){
+			for( var j=0; j<b;j++)
+			{
+				if(j==0){
+				}
+				else{
+					var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
+					spanStateArray.push(inputState);
+					
+				}
+			}
+			}
+		
+		}
+		
+		for( var i=0; i<a;i++)
+		{
+			if (nonStateE[k] == State[i]){
+			for( var j=0; j<b;j++)
+			{
+				if(j==0){
+				}
+				else{
+					//var inputState = document.getElementById("RGtableOutput"+ i + j).innerHTML;
+					document.getElementById("RGtableOutput"+ i + j).innerHTML = spanStateArray[j-1];	
+					
+				}
+			}
+			}
+		
+		}
+	}
+
 }
 
 function displayStates()
