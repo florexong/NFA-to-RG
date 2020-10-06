@@ -34,7 +34,6 @@ function checkStringFunction(input)
 
 						if (inputState!='∅' && inputState!='')
 						{
-							//tbody += alphabetValue[j-1] + inputState + ' | ';
 							inputStateCorrespondingAlphabet.push(alphabetValue[j-1]);
 							inputStateArray.push(inputState);
 						}
